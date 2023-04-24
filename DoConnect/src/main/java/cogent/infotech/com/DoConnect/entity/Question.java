@@ -1,5 +1,7 @@
 package cogent.infotech.com.DoConnect.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,7 +24,7 @@ public class Question {
 	private String title;
 	@OneToMany(mappedBy = "question", fetch=FetchType.EAGER)
 	@JsonIgnore
-	private List<Answers> answers;
+	private List<Answer> answers;
 	
 	//@OnetoOne
 	private String qcreated_by;
