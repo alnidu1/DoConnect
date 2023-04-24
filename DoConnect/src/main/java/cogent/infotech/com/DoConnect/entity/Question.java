@@ -9,6 +9,8 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.List;
+
 @Entity
 public class Question {
 	@Id
