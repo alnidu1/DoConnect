@@ -1,40 +1,25 @@
 package cogent.infotech.com.DoConnect.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "Users")
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	private String username;
 	private String password;
-	
 	private String email;
-	private String userType;
 	
-	public User() {
-		
-	}
-	
-	public User(int id, String name, String username, String password, String email, String userType) {
-		this.id = id;
+	public User() {}
+
+	public User(String name, String username, String password, String email) {
 		this.name = name;
 		this.username = username;
 		this.password = password;
 		this.email = email;
-		this.userType = userType;
-	}
-	public User(String name, String username, String password, String email, String userType) {
-		this.name = name;
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.userType = userType;
 	}
 	public int getId() {
 		return id;
@@ -65,12 +50,6 @@ public class User {
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public String getUserType() {
-		return userType;
-	}
-	public void setUserType(String userType) {
-		this.userType = userType;
 	}
 	
 	
