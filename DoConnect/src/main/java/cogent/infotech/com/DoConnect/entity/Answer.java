@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Answers {
+public class Answer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
