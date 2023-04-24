@@ -11,8 +11,6 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.util.List;
-
 @Entity
 public class Question {
 	@Id
@@ -33,6 +31,5 @@ public class Question {
 	
 	//@OneToOne
 	private String qapproved_by;
-	
 	
 }
