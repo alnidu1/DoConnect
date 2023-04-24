@@ -5,7 +5,11 @@ import org.springframework.stereotype.Repository;
 
 import cogent.infotech.com.DoConnect.entity.Question;
 
+import java.util.List;
+
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, Integer>{
 
+    public List<Question> findAllByText(String text);
+    public List<Question> findAllByTopic(String topic);
 }

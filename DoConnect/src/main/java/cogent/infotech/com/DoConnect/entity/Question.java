@@ -10,18 +10,24 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Question {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	private String title;
 	private String description_question;
-	private String image_src;
+	private String img_src;
 	private String datetime;
 	private String status;
 	private String topic;
-	private String title;
 	@OneToMany(mappedBy = "question", fetch=FetchType.EAGER)
 	@JsonIgnore
 	private List<Answer> answers;
