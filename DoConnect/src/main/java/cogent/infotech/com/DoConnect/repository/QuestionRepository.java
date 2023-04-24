@@ -1,0 +1,9 @@
+package cogent.infotech.com.DoConnect.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import cogent.infotech.com.DoConnect.entity.Question;
+
+public interface QuestionRepository extends JpaRepository<Question, Integer>{
+
+}
