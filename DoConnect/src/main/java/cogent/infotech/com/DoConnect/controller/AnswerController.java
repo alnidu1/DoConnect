@@ -35,8 +35,8 @@ public class AnswerController {
 	}
 	
 	@GetMapping("/getanswerbyid/{id}")
-	public Optional<Answer> getAnswerById(@PathVariable("id") int id) {
-		return answerRepository.findById(id);
+	public Answer getAnswerById(@PathVariable("id") int id) {
+		return answerRepository.findById(id).get();
 	}
 	
 	@PutMapping("/updateanswer")
