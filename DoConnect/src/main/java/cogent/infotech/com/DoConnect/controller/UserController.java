@@ -1,7 +1,6 @@
 package cogent.infotech.com.DoConnect.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import cogent.infotech.com.DoConnect.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,17 +13,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
-import cogent.infotech.com.DoConnect.repository.UserRepository;
 import cogent.infotech.com.DoConnect.entity.User;
 
 
 
 @RestController
 public class UserController {
-
-	@Autowired
-	private UserRepository userRepository;
 
 	@Autowired
 	private UserService service;

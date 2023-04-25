@@ -7,7 +7,7 @@ import java.util.List;
 public interface QuestionService {
 
     public Question addQuestion(Question question);
-    public String updateQuestion(Integer id, Question question);
+    public String updateQuestion(Question question);
     public String deleteQuestionById(Integer id);
     public List<Question> getAllQuestions();
 //    public void getAllQuestionsFalse();
