@@ -8,4 +8,6 @@ import cogent.infotech.com.DoConnect.entity.Admin;
 @Repository
 public interface AdminRepository extends JpaRepository<Admin, Integer> {
 
+	public Admin findByUsername(String username);
+
 }
