@@ -11,5 +11,5 @@ import java.util.List;
 public interface QuestionRepository extends JpaRepository<Question, Integer>{
 
     //public List<Question> findAllByText(String text);
-    //public List<Question> findAllByTopic(String topic);
+    public List<Question> findAllByTopic(String topic);
 }
