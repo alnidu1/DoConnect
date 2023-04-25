@@ -8,8 +8,6 @@ import cogent.infotech.com.DoConnect.entity.Question;
 import java.util.List;
 
 @Repository
-public interface QuestionRepository extends JpaRepository<Question, Integer>{
+public interface QuestionRepository extends JpaRepository<Question, Integer>, CustomQuestionRepository {
 
-    //public List<Question> findAllByText(String text);
-    //public List<Question> findAllByTopic(String topic);
 }

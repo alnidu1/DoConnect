@@ -19,8 +19,8 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public String updateQuestion(Integer id, Question question) {
-        Question questionToUpdate = getQuestionById(id);
+    public String updateQuestion(Question question) {
+        Question questionToUpdate = getQuestionById(question.getId());
         if(questionToUpdate != null) {
             questionToUpdate.setTitle(question.getTitle());
             questionToUpdate.setDescription_question(question.getDescription_question());
@@ -29,9 +29,9 @@ public class QuestionServiceImpl implements QuestionService {
             questionToUpdate.setStatus(question.getStatus());
             questionToUpdate.setTopic(question.getTopic());
             repo.save(questionToUpdate);
-            return "Question with ID#"+id+" has been updated!";
+            return "Question with ID#"+question.getId()+" has been updated!";
         }
-        return "Question with ID#"+id+" does not exist.";
+        return "Question with ID#"+question.getId()+" does not exist.";
     }
 
     @Override
@@ -50,14 +50,12 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public List<Question> getQuestionsByText(String text) {
-        //return repo.findAllByText(text); // needs to be implemented
-    	return null;
+        return repo.findAllByText(text);
     }
 
     @Override
     public List<Question> getQuestionsByTopic(String topic) {
-        //return repo.findAllByTopic(topic);
-    	return null;
+        return repo.findAllByTopic(topic);
     }
 
     @Override

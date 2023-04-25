@@ -1,8 +1,11 @@
 package cogent.infotech.com.DoConnect.entity;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
+@NoArgsConstructor
 @Table(name = "Users")
 public class User {
 	@Id
@@ -12,8 +15,6 @@ public class User {
 	private String username;
 	private String password;
 	private String email;
-	
-	public User() {}
 
 	public User(String name, String username, String password, String email) {
 		this.name = name;
@@ -23,9 +24,6 @@ public class User {
 	}
 	public int getId() {
 		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
 	}
 	public String getName() {
 		return name;

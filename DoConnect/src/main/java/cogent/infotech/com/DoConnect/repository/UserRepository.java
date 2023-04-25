@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import cogent.infotech.com.DoConnect.entity.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer>{
-	User findByUsername(String username);
+public interface UserRepository extends JpaRepository<User, Integer>, CustomUserRepository {
+
 }

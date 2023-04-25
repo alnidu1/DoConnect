@@ -1,11 +1,12 @@
 package cogent.infotech.com.DoConnect.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Entity
+@NoArgsConstructor
+@Table(name = "Admins")
 public class Admin {
 
 	@Id
@@ -52,15 +53,15 @@ public class Admin {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Admin(int id, String firstname, String lastname, String username, String password, String email) {
-		super();
-		this.id = id;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.username = username;
-		this.password = password;
-		this.email = email;
-	}
+//	public Admin(int id, String firstname, String lastname, String username, String password, String email) {
+//		super();
+//		this.id = id;
+//		this.firstname = firstname;
+//		this.lastname = lastname;
+//		this.username = username;
+//		this.password = password;
+//		this.email = email;
+//	}
 	public Admin(String firstname, String lastname, String username, String password, String email) {
 		super();
 		this.firstname = firstname;
@@ -69,12 +70,4 @@ public class Admin {
 		this.password = password;
 		this.email = email;
 	}
-	public Admin() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	
-	
-	
 }
