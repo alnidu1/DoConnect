@@ -36,7 +36,7 @@ public class QuestionController {
 		questionRepository.deleteById(id);
 	}
 	
-	@GetMapping("/getallquestion")
+	@GetMapping("/getallquestions")
 	public List<Question> getAllQuestions(){
 		return (List<Question>) questionRepository.findAll();
 	}
@@ -47,8 +47,8 @@ public class QuestionController {
 	}
 	
 	@GetMapping("/getquestionbyid/{id}")
-	public Optional<Question> getQuestionById(@PathVariable("id") int id) {
-		return questionRepository.findById(id);
+	public Question getQuestionById(@PathVariable("id") int id) {
+		return questionRepository.findById(id).get();
 	}
 	
 	
