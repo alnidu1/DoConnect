@@ -3,6 +3,7 @@ package cogent.infotech.com.DoConnect.controller;
 import java.util.List;
 import java.util.Optional;
 
+import cogent.infotech.com.DoConnect.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.validation.annotation.Validated;
@@ -21,8 +22,12 @@ import cogent.infotech.com.DoConnect.entity.User;
 
 @RestController
 public class UserController {
+
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private UserService service;
 	
 	@GetMapping("/")
 	public String home() {
@@ -31,27 +36,27 @@ public class UserController {
 	
 	@PostMapping("/adduser")
 	public User addUser(@Validated @RequestBody User user) {
-		return userRepository.save(user);
+		return service.addUser(user);
 	}
 	
 	@GetMapping("/getAllUsers")
-	public List<User>getAllUser(){
-		return (List<User>)userRepository.findAll();
+	public List<User> getAllUser(){
+		return service.getAllUsers();
 	}
 	
 	@GetMapping("/getuserbyid/{id}")
-	public Optional<User> getUserById(@PathVariable("id") int id) {
-		return userRepository.findById(id);
+	public User getUserById(@PathVariable("id") Integer id) {
+		return service.getUserById(id);
 	}
 	
 	@PutMapping("/updateuser")
-	public void updateUser(@Validated @RequestBody User user){
-		userRepository.save(user);
+	public String updateUser(@Validated @RequestBody User user){
+		return service.updateUser(user);
 	}
 	
 	@GetMapping("/getbyname/{name}")
-	public User getByName(@PathVariable("name") String name) {
-		return userRepository.findByUsername(name);
+	public List<User> getByName(@PathVariable("name") String name) {
+		return service.getUsersByName(name);
 	}
 	
 	/*
