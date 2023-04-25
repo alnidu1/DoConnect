@@ -14,4 +14,5 @@ public interface QuestionService {
     public List<Question> getQuestionsByText(String text);
     public List<Question> getQuestionsByTopic(String topic);
     public Question getQuestionById(Integer id);
+    public Question getQuestionByDescription(String description);
 }

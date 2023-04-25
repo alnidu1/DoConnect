@@ -61,6 +61,6 @@ public class AnswerController {
 
 	@GetMapping("/getanswersbyquestion")
 	public List<Answer> getAnswersByQuestion(@Validated @RequestBody Question question) {
-		return answerService.getAnswersByQuestion(questionService.getQuestionById(question.getId()));
+		return answerService.getAnswersByQuestion(questionService.getQuestionByDescription(question.getDescription_question()));
 	}
 }

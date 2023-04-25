@@ -55,7 +55,7 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public List<Answer> getAnswersByQuestion(Question question) {
-        Question returnedQuestion = questionService.getQuestionById(question.getId());
+        Question returnedQuestion = questionService.getQuestionByDescription(question.getDescription_question());
         if(returnedQuestion == null)
             return null;
         return returnedQuestion.getAnswers();
