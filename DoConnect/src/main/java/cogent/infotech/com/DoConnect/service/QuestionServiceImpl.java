@@ -50,12 +50,14 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public List<Question> getQuestionsByText(String text) {
-        return repo.findAllByText(text); // needs to be implemented
+        //return repo.findAllByText(text); // needs to be implemented
+    	return null;
     }
 
     @Override
     public List<Question> getQuestionsByTopic(String topic) {
-        return repo.findAllByTopic(topic);
+        //return repo.findAllByTopic(topic);
+    	return null;
     }
 
     @Override

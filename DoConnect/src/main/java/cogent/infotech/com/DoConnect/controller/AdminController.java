@@ -30,7 +30,7 @@ public class AdminController {
 	AdminServiceImpl adminService;
 	
 	
-	 @PostMapping
+	 @PostMapping("register")
 	 public ResponseEntity<Admin> create(@RequestBody Admin admin) {
 		Admin createdAdmin = adminService.createAdmin(admin);
 	     return ResponseEntity.status(HttpStatus.CREATED).body(createdAdmin);
