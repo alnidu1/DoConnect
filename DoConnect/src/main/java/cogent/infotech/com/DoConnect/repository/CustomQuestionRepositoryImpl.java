@@ -27,4 +27,12 @@ public class CustomQuestionRepositoryImpl implements CustomQuestionRepository {
         query.setParameter("topic", topic);
         return query.getResultList();
     }
+
+    @Override
+    public Question findByDescription(String description) {
+        String sql = "Select * From Questions Where description_question=:description";
+        final TypedQuery<Question> query = entityManager.createQuery(sql, Question.class);
+        query.setParameter("description", description);
+        return query.getSingleResult();
+    }
 }

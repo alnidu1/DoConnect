@@ -63,4 +63,9 @@ public class QuestionServiceImpl implements QuestionService {
         Optional<Question> question = repo.findById(id);
         return question.orElse(null);
     }
+
+    @Override
+    public Question getQuestionByDescription(String description) {
+        return repo.findByDescription(description);
+    }
 }

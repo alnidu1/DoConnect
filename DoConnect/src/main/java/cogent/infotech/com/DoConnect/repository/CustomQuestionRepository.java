@@ -8,4 +8,5 @@ public interface CustomQuestionRepository {
 
     public List<Question> findAllByText(String text);
     public List<Question> findAllByTopic(String topic);
+    public Question findByDescription(String description);
 }
