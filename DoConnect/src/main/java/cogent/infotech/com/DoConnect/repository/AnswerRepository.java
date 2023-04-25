@@ -9,6 +9,6 @@ import cogent.infotech.com.DoConnect.entity.Answer;
 import cogent.infotech.com.DoConnect.entity.Question;
 
 @Repository
-public interface AnswerRepository extends JpaRepository<Answer, Integer>{
-	List<Answer> findAnswersByQuestion(Question question);
+public interface AnswerRepository extends JpaRepository<Answer, Integer>, CustomAnswerRepository {
+
 }

@@ -17,7 +17,7 @@ public class AnswerServiceImpl implements AnswerService {
     private AnswerRepository answerRepo;
 
     @Autowired
-    private QuestionRepository questionRepo;
+    private QuestionService questionService;
 
     @Override
     public Answer addAnswer(Answer answer) {
@@ -25,17 +25,17 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public String updateAnswer(Integer id, Answer answer) {
-        Answer answerToUpdate = getAnswerById(id);
+    public String updateAnswer(Answer answer) {
+        Answer answerToUpdate = getAnswerById(answer.getId());
         if(answerToUpdate != null) {
             answerToUpdate.setDescription_answer(answer.getDescription_answer());
             answerToUpdate.setImg_src(answer.getImg_src());
             answerToUpdate.setDatetime(answer.getDatetime());
             answerToUpdate.setStatus(answer.getStatus());
             answerRepo.save(answerToUpdate);
-            return "Answer with ID#"+id+" has been updated!";
+            return "Answer with ID#"+answer.getId()+" has been updated!";
         }
-        return "Answer with ID#"+id+" does not exist.";
+        return "Answer with ID#"+answer.getId()+" does not exist.";
     }
 
     @Override
@@ -54,10 +54,23 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
+    public List<Answer> getAnswersByQuestion(Question question) {
+        Question returnedQuestion = questionService.getQuestionById(question.getId());
+        if(returnedQuestion == null)
+            return null;
+        return returnedQuestion.getAnswers();
+    }
+
+    @Override
     public List<Answer> getAnswersByQuestionId(Integer questionId) {
-        Optional<Question> question = questionRepo.findById(questionId);
-        if(question.isPresent())
-            return question.get().getAnswers();
-        return null;
+        Question returnedQuestion = questionService.getQuestionById(questionId);
+        if(returnedQuestion == null)
+            return null;
+        return returnedQuestion.getAnswers();
+    }
+
+    @Override
+    public List<Answer> getAllAnswers() {
+        return answerRepo.findAll();
     }
 }
