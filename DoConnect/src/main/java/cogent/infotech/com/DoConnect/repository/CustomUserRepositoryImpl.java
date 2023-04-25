@@ -14,7 +14,7 @@ public class CustomUserRepositoryImpl implements CustomUserRepository {
 
     @Override
     public List<User> findUserByName(String name) {
-        String sql = "Select * from Users Where name=:name";
+        String sql = "Select u from Users u Where u.name = :name";
         final TypedQuery<User> query =  entityManager.createQuery(sql, User.class);
         query.setParameter("name", name);
         return query.getResultList();
