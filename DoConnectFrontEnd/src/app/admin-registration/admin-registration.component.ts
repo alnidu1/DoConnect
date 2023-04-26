@@ -3,6 +3,7 @@ import { OnInit } from '@angular/core';
 
 import { Admin } from '../admin';
 import { AdminService } from '../Admin.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class AdminRegistrationComponent  implements OnInit{
   admins:Admin[];
   model:Admin;
 
-  constructor(private adminService:AdminService){
+  constructor(private adminService:AdminService, private router:Router){
     this.admins=[];
     this.model= new Admin('','','','','');
 }
@@ -36,6 +37,9 @@ ngOnInit(): void {
         error => {
           console.log(error);
         });
+        
+          this.router.navigate(['/adminlogin']);
+        
   }
 
   loadAdmin(){

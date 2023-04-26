@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminRegistrationComponent } from './admin-registration/admin-registration.component';
 import { LoginComponent } from './login/login.component';
+import { UserComponent } from './user-component/user-component.component';
 
 
 
@@ -14,7 +15,8 @@ import { LoginComponent } from './login/login.component';
   declarations: [
     AppComponent,
     AdminRegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
