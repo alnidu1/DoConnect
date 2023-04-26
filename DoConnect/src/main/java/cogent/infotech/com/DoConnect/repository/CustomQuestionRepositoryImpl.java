@@ -14,7 +14,7 @@ public class CustomQuestionRepositoryImpl implements CustomQuestionRepository {
 
     @Override
     public List<Question> findAllByText(String text) {
-        String sql = "Select * From Questions Where title Like '%text%' or description_question Like '%text%'";
+        String sql = "Select q From Questions q Where q.title Like :text OR q.description_question Like :text";
         final TypedQuery<Question> query = entityManager.createQuery(sql, Question.class);
         query.setParameter("text", text);
         return query.getResultList();
@@ -22,7 +22,7 @@ public class CustomQuestionRepositoryImpl implements CustomQuestionRepository {
 
     @Override
     public List<Question> findAllByTopic(String topic) {
-        String sql = "Select * From Questions Where topic=:topic";
+        String sql = "Select q From Questions q Where q.topic = :topic";
         final TypedQuery<Question> query = entityManager.createQuery(sql, Question.class);
         query.setParameter("topic", topic);
         return query.getResultList();
@@ -30,7 +30,7 @@ public class CustomQuestionRepositoryImpl implements CustomQuestionRepository {
 
     @Override
     public Question findByDescription(String description) {
-        String sql = "Select * From Questions Where description_question=:description";
+        String sql = "Select q From Questions q Where q.description_question = :description";
         final TypedQuery<Question> query = entityManager.createQuery(sql, Question.class);
         query.setParameter("description", description);
         return query.getSingleResult();

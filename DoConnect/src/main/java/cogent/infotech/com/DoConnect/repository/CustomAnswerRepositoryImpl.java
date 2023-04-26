@@ -15,7 +15,7 @@ public class CustomAnswerRepositoryImpl implements CustomAnswerRepository {
 
     @Override
     public List<Answer> findAnswersByQuestion(Question question) {
-        String sql = "Select * from Answers Where question=:question";
+        String sql = "Select a from Answers a Where a.question = :question";
         final TypedQuery<Answer> query = entityManager.createQuery(sql, Answer.class);
         query.setParameter("question", question);
         return query.getResultList();
