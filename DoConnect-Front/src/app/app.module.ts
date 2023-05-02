@@ -49,7 +49,12 @@ import { ChatComponent } from './chat/chat.component';
 
 
   ],
-  providers: [{provide:HTTP_INTERCEPTORS, useClass:TokenInterceptorService, multi:true}],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS, 
+      useClass:TokenInterceptorService, 
+      multi:true}
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
