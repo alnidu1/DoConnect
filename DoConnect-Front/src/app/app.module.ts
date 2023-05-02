@@ -19,6 +19,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { UserPostComponent } from './user-post/user-post.component';
 import { AdminPostComponent } from './admin-post/admin-post.component';
+import { Socket } from 'socket.io-client';
+import { ChatComponent } from './chat/chat.component';
 
 
 @NgModule({
@@ -28,7 +30,8 @@ import { AdminPostComponent } from './admin-post/admin-post.component';
     HomeComponent,
     SignupComponent,
     UserPostComponent,
-    AdminPostComponent
+    AdminPostComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
