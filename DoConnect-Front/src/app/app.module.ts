@@ -20,6 +20,8 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { UserPostComponent } from './user-post/user-post.component';
 import { AdminPostComponent } from './admin-post/admin-post.component';
 import { TokenInterceptorService } from './service/token-interceptor-service';
+import { Socket } from 'socket.io-client';
+import { ChatComponent } from './chat/chat.component';
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { TokenInterceptorService } from './service/token-interceptor-service';
     HomeComponent,
     SignupComponent,
     UserPostComponent,
-    AdminPostComponent
+    AdminPostComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,7 @@ import { TokenInterceptorService } from './service/token-interceptor-service';
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
-    
+
 
   ],
   providers: [{provide:HTTP_INTERCEPTORS, useClass:TokenInterceptorService, multi:true}],

@@ -2,6 +2,8 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <form novalidate #signupForm="ngForm" (ngSubmit)="signup(signupForm)" class="needs-validation">
+          <br><br><br>
+          <h1>SIGN UP FORM</h1>
           <div class="form-group">
             <label for="username">Username:</label>
             <input class="form-control" name="username" id="username" type="text" placeholder="Username" [(ngModel)]="user.username" required>
