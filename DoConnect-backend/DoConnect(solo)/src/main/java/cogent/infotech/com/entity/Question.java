@@ -47,7 +47,15 @@ public class Question {
 	@JoinColumn(name="qapproved_by" , referencedColumnName="id")
 	private User qapproved_by;
 	
-	
-	
-	
+	public Question() {}
+
+	public Question(String description_question, String image_src, String datetime, String status, String topic, String title, User qcreated_by) {
+		this.description_question = description_question;
+		this.image_src = image_src;
+		this.datetime = datetime;
+		this.status = status;
+		this.topic = topic;
+		this.title = title;
+		this.qcreated_by = qcreated_by;
+	}
 }

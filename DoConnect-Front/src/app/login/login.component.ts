@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(loginForm:NgForm, username:any, password:any){
+  login(loginForm:NgForm){
     
     this.userService.loginUser(loginForm.value).subscribe({
       next: (response: any) => {
@@ -33,15 +33,12 @@ export class LoginComponent implements OnInit {
 
         
         this.authService.setUser(tokenInfo.user);
-        alert(username+ " Login Sucess");
+        alert(`${loginForm.value.username} Login Success`);
         if (localStorage.getItem("user.userType") =="admin"){
           this.router.navigate(['adminpost']);
         } else {
           this.router.navigate(['userpost']);
         }
-
-
-
       },
       error :(error: HttpErrorResponse) => {
         
