@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
       error :(error: HttpErrorResponse) => {
         
         this.authService.setToken(error.error.text);
-        alert(error);
+        alert(`Invalid username/password  ${loginForm.value.username}`);
       }
   });
 }
