@@ -37,6 +37,7 @@ public class AdminController {
 	 }
 	@GetMapping("")
 	  public List<Admin> readAll() {
+		
 	        return adminService.readAllAdmin();
 	  }
 	

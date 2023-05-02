@@ -28,10 +28,18 @@ public class Question {
 	@JsonIgnore
 	private List<Answer> answers;
 	
-	//@OnetoOne
-	private String qcreated_by;
+	public Question(String title, String description_question, String img_src, String datetime, String status, String topic){
+		this.title=title;
+		this.description_question=description_question;
+		this.img_src=img_src;
+		this.datetime=status;
+		this.topic=topic;
+	}
 	
-	//@OneToOne
-	private String qapproved_by;
+	@OneToOne
+	private User qcreated_by;
+	
+	@OneToOne
+	private Admin qapproved_by;
 	
 }

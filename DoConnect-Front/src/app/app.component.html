@@ -1,0 +1,18 @@
+<mat-sidenav-container fullscreen>
+  <mat-toolbar class="header" color="primary">
+    <mat-toolbar-row>
+      <span> DoConnect </span>
+      <div class="spacer"></div>
+      <div class="nav-buttons">
+        <a mat-raised-button routerLink="home" routerLinkActive="active" class="nav-button">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+          Home
+        </a>
+        <a mat-raised-button  routerLink="home" routerLinkActive="active" class="nav-button">
+          Login|Register
+        </a>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <router-outlet></router-outlet>
+</mat-sidenav-container>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div class="card"> 
+        <h2>Create Question</h2>
+        <form novalidate #qform="ngForm" (ngSubmit)="addQuestion(qform)">
+            <div>
+                <label for="title">Title</label>
+                <input type="text" [(ngModel)]="qmodel.title" name="title" required>
+            </div>
+            <div>
+                <label for="topic">Topic</label>
+                <input type="text" [(ngModel)]="qmodel.topic" name="topic" required>
+            </div>
+            <div>
+                <label for="question_description">Question</label>
+                <input type="text" [(ngModel)]="qmodel.description_question" name="description_question" required>
+            </div> 
+            <div>
+                <label for="image">image</label>
+                <input type="text" [(ngModel)]="qmodel.img_src" name="image" >
+            </div> 
+            <div>
+                <input type="text" [(ngModel)]="qmodel.status" value="pending" >
+            </div> 
+            <div>
+                <label for="datetime">DateTime</label>
+                <input type="datetime" [(ngModel)]="qmodel.datetime"  value="" name="topic" >
+            </div> 
+           <button [disabled]="qform.invalid" type="submit">Submit</button>
+        </form>
+
+    </div>
+
+    <br><br><br>
+    <div *ngFor="let post of questions">
+        <div class="card"> 
+
+        <div>{{ post.topic}}</div>
+        <div>{{post.datetime}}</div>
+        <div>{{post.description_question}}</div>
+        </div>    
+    </div>
+</body>
