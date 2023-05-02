@@ -33,14 +33,12 @@ export class UserService{
         });
 
 
-
-        loginUser(loginData:any):Observable<any>{
-            return this.http.post(`${this.authenticateUrl}`, loginData,{
-                headers: this.requestHeader,
-                responseType: 'text'
-            });
-        }
-        
+    loginUser(loginData:any):Observable<any> {
+        return this.http.post(`${this.authenticateUrl}`, loginData,{
+            headers: this.requestHeader,
+            'responseType': 'text'
+        });
+    }
 
     getAllUsers():Observable<User[]>{
         return this.http.get<User[]>(`${this.getAllUsersUrl}`,{
