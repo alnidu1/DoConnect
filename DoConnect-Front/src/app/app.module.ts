@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { UserPostComponent } from './user-post/user-post.component';
 import { AdminPostComponent } from './admin-post/admin-post.component';
+import { TokenInterceptorService } from './service/token-interceptor-service';
 import { Socket } from 'socket.io-client';
 import { ChatComponent } from './chat/chat.component';
 
@@ -45,10 +46,10 @@ import { ChatComponent } from './chat/chat.component';
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
-    
+
 
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS, useClass:TokenInterceptorService, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
