@@ -18,7 +18,7 @@ import cogent.infotech.com.service.ChatServiceImpl;
 import cogent.infotech.com.entity.*;
 
 
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 public class ChatController {
 	
