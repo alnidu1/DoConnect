@@ -4,14 +4,18 @@
       <span> DoConnect </span>
       <div class="spacer"></div>
       <div class="nav-buttons">
-        <a mat-raised-button routerLink="home" routerLinkActive="active" class="nav-button">
+        <button mat-raised-button routerLink="home" routerLinkActive="active" class="nav-button">
           <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
-          Home
-        </a>
+          
+        </button>
 
-        <a mat-raised-button routerLink="login" routerLinkActive="active" class="nav-button">
+        <button *ngIf="(isLoggedIn$ | async) === false" mat-raised-button routerLink="login" routerLinkActive="active" class="nav-button">
           Login|Register
-        </a>
+        </button>
+        <button *ngIf="(isLoggedIn$ | async) === true" mat-raised-button (click)="onLogout()" class="nav-button">
+          Logout
+        </button>
+
       </div>
     </mat-toolbar-row>
   </mat-toolbar>

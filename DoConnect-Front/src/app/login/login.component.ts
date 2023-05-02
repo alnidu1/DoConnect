@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
         
         this.authService.setUser(tokenInfo.user);
         alert(`${loginForm.value.username} Login Success`);
+        this.authService.setIsLoggedIn(true);
         if (localStorage.getItem("user.userType") =="admin"){
           this.router.navigate(['adminpost']);
         } else {
