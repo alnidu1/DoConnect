@@ -9,17 +9,17 @@ import { UserAuthService } from './user-auth-service';
 })
 export class TokenInterceptorService implements HttpInterceptor{
 
+    baseurl="http://localhost:8080/authenticate";
     constructor(private userAuthService: UserAuthService) {}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
        let token = this.userAuthService.getToken()
        
-       if (req.url.includes('login') || req.url.includes('') ) {
+       if (req.url.includes(this.baseurl))   {
+        
         return next.handle(req);
       }
-      if (req.url.includes('home')) {
-        return next.handle(req);
-      }
+      
         let jwttoken = req.clone({
             setHeaders:{
                 Authorization: 'Bearer ' + token
