@@ -45,7 +45,7 @@ export class UserService{
 
 
     loginUser(loginData:any):Observable<any>{
-        return this.http.post(this.authenticateUrl, loginData,{
+        return this.http.post(`${this.authenticateUrl}`, loginData,{
             headers: this.requestHeader,
             'responseType': 'text'
         });

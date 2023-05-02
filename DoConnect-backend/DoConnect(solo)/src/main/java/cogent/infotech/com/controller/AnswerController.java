@@ -19,7 +19,7 @@ import cogent.infotech.com.service.AnswerService;
 import cogent.infotech.com.entity.Answer;
 import cogent.infotech.com.entity.User;
 
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 public class AnswerController {
 	

@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import cogent.infotech.com.config.JwtResponse;
+//import cogent.infotech.com.config.JwtResponse;
 import cogent.infotech.com.entity.User;
 import cogent.infotech.com.repository.UserRepository;
 import cogent.infotech.com.service.UserService;
