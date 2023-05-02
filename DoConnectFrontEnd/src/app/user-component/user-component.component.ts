@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { User } from '../user';
+import { User } from '../model/user';
 import { OnInit } from '@angular/core';
-import { UserService } from '../User.service';
+import { UserService } from '../service/User.service';
 
 @Component({
   selector: 'app-user-component',
@@ -34,6 +34,8 @@ ngOnInit(): void {
         error => {
           console.log(error);
         });
+
+      
   }
 
   loadUser(){

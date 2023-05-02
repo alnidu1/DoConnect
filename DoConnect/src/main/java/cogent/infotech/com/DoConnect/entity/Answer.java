@@ -24,9 +24,9 @@ public class Answer {
 	@JoinColumn(name = "question_id")
 	private Question question;
 	
-	//@OneToOne
-	private String approved_by;
+	@OneToOne
+	private Admin approved_by;
 	
-	//@OneToOne
-	private String created_by;
+	@OneToOne
+	private User created_by;
 }

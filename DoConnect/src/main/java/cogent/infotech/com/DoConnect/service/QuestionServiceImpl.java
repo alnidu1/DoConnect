@@ -1,6 +1,7 @@
 package cogent.infotech.com.DoConnect.service;
 
 import cogent.infotech.com.DoConnect.entity.Question;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +13,10 @@ import java.util.Optional;
 @Service
 public class QuestionServiceImpl implements QuestionService {
 
+
     @Autowired
-    private QuestionRepository repo;
+   private QuestionRepository repo;
+
 
     @Override
     public Question addQuestion(Question question) {

@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form novalidate #signupForm="ngForm" (ngSubmit)="signup(signupForm)" class="needs-validation">
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input class="form-control" name="username" id="username" type="text" placeholder="Username" [(ngModel)]="user.username" required>
+           
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input class="form-control" name="password" id="password" type="password" placeholder="Password" [(ngModel)]="user.password" required>
+          
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input class="form-control" name="email" id="email" type="email" placeholder="Email" [(ngModel)]="user.email" required>
+         
+          </div>
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input class="form-control" name="name" id="name" type="text" placeholder="Name" [(ngModel)]="user.name" required>
+            
+          </div>
+          <div class="form-group">
+            <label for="userType">User Type:</label>
+            <select class="form-control" name="userType" id="userType" [(ngModel)]="user.userType" required>
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

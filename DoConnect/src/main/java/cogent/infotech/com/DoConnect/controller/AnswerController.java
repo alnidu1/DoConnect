@@ -8,7 +8,7 @@ import cogent.infotech.com.DoConnect.service.AnswerService;
 import cogent.infotech.com.DoConnect.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+
 
 import cogent.infotech.com.DoConnect.entity.Answer;
 import cogent.infotech.com.DoConnect.repository.AnswerRepository;

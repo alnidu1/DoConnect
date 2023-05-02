@@ -1,0 +1,23 @@
+.spacer {
+    flex: 1 1 10px;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .nav-buttons {
+    color:white;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .nav-button {
+    color:white;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 20px;
+  }
+  

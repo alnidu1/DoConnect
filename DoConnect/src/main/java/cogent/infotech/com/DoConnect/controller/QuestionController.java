@@ -5,10 +5,10 @@ import java.util.List;
 import cogent.infotech.com.DoConnect.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
 
 import cogent.infotech.com.DoConnect.entity.Question;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/question")
 public class QuestionController {
@@ -33,6 +33,7 @@ public class QuestionController {
 	
 	@GetMapping("/getallquestions")
 	public List<Question> getAllQuestions(){
+		
 		return service.getAllQuestions();
 	}
 	

@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { AdminRegistrationComponent } from './admin-registration/admin-registration.component';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user-component/user-component.component';
+import { QuestionComponent } from './question/question.component';
+import { AnswerComponent } from './answer/answer.component';
 
 
 
@@ -16,7 +18,9 @@ import { UserComponent } from './user-component/user-component.component';
     AppComponent,
     AdminRegistrationComponent,
     LoginComponent,
-    UserComponent
+    UserComponent,
+    QuestionComponent,
+    AnswerComponent
   ],
   imports: [
     BrowserModule,
