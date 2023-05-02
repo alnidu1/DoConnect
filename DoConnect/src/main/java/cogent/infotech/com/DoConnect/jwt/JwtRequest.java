@@ -1,30 +1,13 @@
 package cogent.infotech.com.DoConnect.jwt;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class JwtRequest {
     private String username;
     private String password;
-
-    public JwtRequest() {}
-
-    public JwtRequest(String username, String password) {
-        this.setUsername(username);
-        this.setPassword(password);
-    }
-
-    public String getUsername() {
-        return this.username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return this.password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

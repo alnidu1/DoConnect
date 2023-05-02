@@ -13,8 +13,10 @@ import java.util.Optional;
 @Service
 public class QuestionServiceImpl implements QuestionService {
 
+
     @Autowired
-	private QuestionRepository repo;
+   private QuestionRepository repo;
+
 
     @Override
     public Question addQuestion(Question question) {
