@@ -32,14 +32,14 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/image")
 public class ImageController {
 
 	@Value("${upload.path}")
 	private String uploadPath;
 
 
-    @PostMapping("/image/upload")
+    @PostMapping("/upload")
     public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
         try {
             String fileName = StringUtils.cleanPath(file.getOriginalFilename());

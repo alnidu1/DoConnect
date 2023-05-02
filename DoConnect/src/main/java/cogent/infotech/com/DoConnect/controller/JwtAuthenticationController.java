@@ -10,6 +10,12 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;*/
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,10 +25,9 @@ import cogent.infotech.com.DoConnect.jwt.JwtRequest;
 import cogent.infotech.com.DoConnect.jwt.JwtResponse;
 import cogent.infotech.com.DoConnect.jwt.JwtUtil;
 
-//@RestController
-//@RequestMapping("/api/auth")
+@RestController
+@RequestMapping("/api/auth")
 public class JwtAuthenticationController {
-/*
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -42,6 +47,16 @@ public class JwtAuthenticationController {
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
+//    @PostMapping("/login")
+//    public String createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+//
+//
+//        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+//
+//        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+//        return jwtTokenUtil.generateToken(userDetails);
+//    }
+
     private void authenticate(String username, String password) throws Exception {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
@@ -51,5 +66,4 @@ public class JwtAuthenticationController {
             throw new Exception("INVALID_CREDENTIALS", e);
         }
     }
-   */
 }

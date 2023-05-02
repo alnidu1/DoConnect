@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 //import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -14,7 +15,7 @@ import java.util.function.Function;
 
 @Service
 public class JwtUtil {
-/*
+
     @Value("${jwt.secret}")
     private String secret;
 
@@ -62,5 +63,4 @@ public class JwtUtil {
         final String tokenUsername = extractUsername(token);
         return (tokenUsername.equals(username) && !isTokenExpired(token));
     }
-   */
 }
