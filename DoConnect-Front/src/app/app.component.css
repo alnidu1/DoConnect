@@ -14,4 +14,22 @@
   }
   
 
+  .nav-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .button-text {
+    margin-left: 4px;
+  }
+
+  .larger-icon {
+    font-size: 30px; /* adjust this value to change the icon size */
+  }
+  
+  
+  
+  
   
