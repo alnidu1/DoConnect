@@ -54,6 +54,7 @@ export class UserAuthService {
   }
 
   public setUser(user: User) {
+    localStorage.setItem('user.id', user.id.toString());
     localStorage.setItem('user.username', user.username);
     localStorage.setItem('user.name', user.name);
     localStorage.setItem('user.userType', user.userType);
@@ -67,6 +68,9 @@ export class UserAuthService {
     return localStorage.getItem('user.userType') as string;
   }
 
+  public getUserId():string {
+    return localStorage.getItem('user.id') as string ;
+  }
   private apiURL = "http://localhost:8080/authenticate";
 
   logout() {

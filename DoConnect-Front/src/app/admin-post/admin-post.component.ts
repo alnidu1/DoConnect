@@ -15,16 +15,34 @@ export class AdminPostComponent implements OnInit{
   
   ngOnInit(): void {
     
-    this.questionService.getAllQuestions().subscribe((data: Question[])=>{
+    /*this.questionService.getAllQuestions().subscribe((data: Question[])=>{
       this.questions=data
-    });
+    });*/
+    this.loadPosts();
   }
 
   constructor(private questionService:QuestionService, router:Router) {}
 
   loadPosts() {
-    this.questionService.getAllQuestions().subscribe((data: Question[])=>{
+    this.questionService.getPendingQuestions().subscribe((data: Question[])=>{
       this.questions=data
     });
   }
+
+  approvePost(quest:Question){
+    this.questionService.approveQuestion(quest).subscribe(()=>
+      {
+      this.loadPosts();
+     });
+  }
+
+  denyPost(quest:Question){
+    this.questionService.denyQuestion(quest).subscribe(()=>
+    {
+      this.loadPosts();
+    }
+    );
+  }
+
+
 }

@@ -4,6 +4,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 300px; /* or any other desired width */
+    padding-top: 4px;
+    padding-bottom: 4px;
   }
 
   h1 {
@@ -13,3 +15,24 @@
     transform: translate(-50%, -50%);
     width: 300px; /* or any other desired width */
   }
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .form-group {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  .form-group {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  
+  
+  
+  
+  
+  
+  

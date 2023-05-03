@@ -22,6 +22,8 @@ import { AdminPostComponent } from './admin-post/admin-post.component';
 import { TokenInterceptorService } from './service/token-interceptor-service';
 import { Socket } from 'socket.io-client';
 import { ChatComponent } from './chat/chat.component';
+import { MatButtonModule } from '@angular/material/button';
+
 
 
 @NgModule({
@@ -46,6 +48,7 @@ import { ChatComponent } from './chat/chat.component';
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
+    MatButtonModule
 
 
   ],

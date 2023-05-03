@@ -1,3 +1,7 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+
+
 <H1>Admin Page</H1>
 <div class="user-posts-container">
     <h2>List of Questions</h2>
@@ -13,6 +17,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let q of questions">
+    
                 <td>{{q.id}}</td>
                 <td>{{q.title}}</td>
                 <td>{{q.topic}}</td>
@@ -21,7 +26,12 @@
                 </td>
                 <td>{{q.datetime}}</td>
                 <td>{{q.status}}</td>
+                <td>
+                    <button mat-raised-button (click)="approvePost(q)"	color="primary">Approve</button>
+                    
+                    <button mat-raised-button	(click)="denyPost(q)"color="warn">Deny</button></td>
             </tr>
+
         </tbody>
     </table>
 </div>

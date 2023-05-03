@@ -11,11 +11,12 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent {
   title = 'DoConnect-Front';
-
+  isLoggedIn:boolean=false;
   isLoggedIn$: Observable<boolean> ;
-
+  username:string=this.userAuthService.getUserName();
   constructor(private userAuthService: UserAuthService, private router:Router) {
     this.isLoggedIn$ = this.userAuthService.isLoggedIn$();
+    
 
   }
 
