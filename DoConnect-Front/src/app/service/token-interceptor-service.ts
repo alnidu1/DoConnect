@@ -9,13 +9,19 @@ import { UserAuthService } from './user-auth-service';
 })
 export class TokenInterceptorService implements HttpInterceptor{
 
+    
     baseurl="http://localhost:8080/authenticate";
+    baseurl2="http://localhost:8080/adduser";
     constructor(private userAuthService: UserAuthService) {}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
        let token = this.userAuthService.getToken()
        
        if (req.url.includes(this.baseurl))   {
+        
+        return next.handle(req);
+      }
+      if (req.url.includes(this.baseurl2))   {
         
         return next.handle(req);
       }

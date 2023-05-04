@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { UserPostComponent } from './user-post/user-post.component';
 import { AdminPostComponent } from './admin-post/admin-post.component';
 import { ChatComponent } from './chat/chat.component';
+import { UserSearchComponent } from './user-search/user-search.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent},
   {path: "userpost", component:UserPostComponent},
   {path: "adminpost", component:AdminPostComponent},
-  {path:"chat", component: ChatComponent}
+  {path:"chat", component: ChatComponent},
+  {path:"usersearch", component:UserSearchComponent}
 
 
 ];
