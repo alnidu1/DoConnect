@@ -3,15 +3,19 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { UserAuthService } from "./user-auth-service";
 import { Question } from "../model/question";
+import { Observable } from "rxjs";
 
 @Injectable({
     providedIn:"root"
 })
 export class QuestionService {
-    getAllQuestionsUrl:String = "http://localhost:8080/getallquestions";
-    getAllPendingUrl:String="http://localhost:8080/getpendingquestions";
-    approveQuestionUrl:String="http://localhost:8080/approvequestion";
-    denyQuestionUrl:String="http://localhost:8080/denyquestion";
+    private baseUrl = 'http://localhost:8080';
+
+    private getAllQuestionsUrl:String = "http://localhost:8080/getallquestions";
+    private getAllPendingUrl:String="http://localhost:8080/getpendingquestions";
+    private approveQuestionUrl:String="http://localhost:8080/approvequestion";
+    private denyQuestionUrl:String="http://localhost:8080/denyquestion";
+    private searchQuestionUrl="http://localhost:8080/searchquestions";
 
     constructor(private http:HttpClient,
         private userAuthService: UserAuthService){}
@@ -43,6 +47,10 @@ export class QuestionService {
         return this.http.put(`${this.denyQuestionUrl}`,question);
 
     }
+
+    searchQuestion(s: string): Observable<Question[]> {
+        return this.http.get<Question[]>(`${this.baseUrl}/searchquestions/${s}`);
+      }
 
 
 }

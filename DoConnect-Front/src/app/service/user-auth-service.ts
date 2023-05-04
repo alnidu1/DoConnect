@@ -6,6 +6,7 @@ import { BehaviorSubject } from "rxjs";
 
 import { User } from "../model/user";
 import jwt_decode from 'jwt-decode';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -37,6 +38,7 @@ export class UserAuthService {
   public isLoggedIn(): boolean {
     return !!this.getRoles() && !!this.getToken();
   }
+  
   public setIsLoggedIn(value: boolean) {
     this.isLoggedInSubject.next(value);
   }
@@ -71,6 +73,7 @@ export class UserAuthService {
   public getUserId():string {
     return localStorage.getItem('user.id') as string ;
   }
+
   private apiURL = "http://localhost:8080/authenticate";
 
   logout() {

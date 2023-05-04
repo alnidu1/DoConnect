@@ -11,7 +11,7 @@ import { UserAuthService } from "./user-auth-service";
 export class UserService{
 
   
-
+    private searchUserUrl="http://localhost:8080/searchquestions";
     private signupUserUrl = "http://localhost:8080/adduser";
     private authenticateUrl = "http://localhost:8080/authenticate";
     private getAllUsersUrl = "http://localhost:8080/getallusers";
