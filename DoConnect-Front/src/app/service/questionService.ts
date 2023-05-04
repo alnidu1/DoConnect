@@ -20,7 +20,13 @@ export class QuestionService {
     getAllApprovedQuestionsUrl:String="http://localhost:8080/getapprovedquestions"
     approveQuestionUrl:String="http://localhost:8080/approvequestion";
     denyQuestionUrl:String="http://localhost:8080/denyquestion";
+    private baseUrl = 'http://localhost:8080';
 
+    private getAllQuestionsUrl:String = "http://localhost:8080/getallquestions";
+    private getAllPendingUrl:String="http://localhost:8080/getpendingquestions";
+    private approveQuestionUrl:String="http://localhost:8080/approvequestion";
+    private denyQuestionUrl:String="http://localhost:8080/denyquestion";
+    private searchQuestionUrl="http://localhost:8080/searchquestions";
 
     constructor(private http:HttpClient,
         private userAuthService: UserAuthService){}
@@ -29,8 +35,13 @@ export class QuestionService {
         'Content-Type' : 'application/json',
         'Accept' : '*/*',
         });
-        AdminId:string='';
-        AId:number=0;
+    AdminId:string='';
+    AId:number=0;
+    getAllQuestions() {
+
+        return this.http.get<Question[]>(`${this.getAllQuestionsUrl}`)
+    }
+
     getPendingQuestions() {
 
         return this.http.get<Question[]>(`${this.getAllPendingUrl}`)
@@ -45,7 +56,7 @@ export class QuestionService {
 
     denyQuestion(question:any){
         return this.http.put(`${this.denyQuestionUrl}`,question);
-        
+
     }
 
     addQuestion(question: Question) {
@@ -68,6 +79,10 @@ export class QuestionService {
     getAllQuestionsFalse() {
         return this.http.get<Question[]>(`${this.getAllQuestionsFalseUrl}`);
     }
+    searchQuestion(s: string): Observable<Question[]> {
+        return this.http.get<Question[]>(`${this.baseUrl}/searchquestions/${s}`);
+      }
+
 
     getAllQuestionsByTopic(topic:String) {
         return this.http.get<Question[]>(`${this.getAllQuestionsByTopicUrl}/${topic}`);

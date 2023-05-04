@@ -25,6 +25,8 @@ import { ChatComponent } from './chat/chat.component';
 import { MatButtonModule } from '@angular/material/button';
 import { UserSearchComponent } from './user-search/user-search.component';
 import { DatePipe } from '@angular/common';
+import { SearchbarComponent } from './searchbar/searchbar.component';
+
 
 
 @NgModule({
@@ -36,7 +38,8 @@ import { DatePipe } from '@angular/common';
     UserPostComponent,
     AdminPostComponent,
     ChatComponent,
-    UserSearchComponent
+    UserSearchComponent,
+    SearchbarComponent
   ],
   imports: [
     BrowserModule,
@@ -56,10 +59,10 @@ import { DatePipe } from '@angular/common';
   ],
   providers: [
     {
-      provide:HTTP_INTERCEPTORS, 
-      useClass:TokenInterceptorService, 
+      provide:HTTP_INTERCEPTORS,
+      useClass:TokenInterceptorService,
       multi:true
-    }, 
+    },
     DatePipe
   ],
   bootstrap: [AppComponent]
