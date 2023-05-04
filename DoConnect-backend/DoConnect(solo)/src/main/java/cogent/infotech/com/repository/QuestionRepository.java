@@ -14,15 +14,10 @@ import cogent.infotech.com.entity.User;
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, Integer> {
 	
-	@Query(value ="SELECT * From question where status = ?1"
-			,nativeQuery = true)
+	//List<Question> findByDescriptionQuestionContaining(String searchText);
+	
 	List<Question> findByStatus(String status);
-	@Modifying
-	@Transactional
-	@Query(value =
-			"UPDATE Question q set q.status = ?2, q.qapproved_by = ?3 where q.id = ?1"
-			,nativeQuery = true)
-	void updateQuestionStatus(int id, String status, int userid);
+	
 	Question findById(int id);
 	List<Question> findByTopic(String topic);
 

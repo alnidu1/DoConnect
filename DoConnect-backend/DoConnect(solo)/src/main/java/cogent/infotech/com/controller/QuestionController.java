@@ -25,7 +25,7 @@ import cogent.infotech.com.entity.Answer;
 import cogent.infotech.com.entity.Question;
 import cogent.infotech.com.entity.User;
 
-@CrossOrigin()
+@CrossOrigin
 @RestController
 public class QuestionController {
 	
@@ -39,13 +39,7 @@ public class QuestionController {
 	}
 	
 
-	@PutMapping("/updatequestion/{id}/{status}")
-	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public void updateQuestion(@Validated @PathVariable("id") int id, 
-			@Validated @PathVariable("status") String status,
-			@Validated @RequestBody User user) {
-		questionService.updateQuestionStatus(id, status, user.getId());
-	}
+
 	
 	@DeleteMapping("/deletequestionbyid/{id}")
 	@PreAuthorize("hasRole('admin')")
@@ -59,11 +53,7 @@ public class QuestionController {
 		return questionService.getAllQuestions();
 	}
 	
-	@GetMapping("/getallquestionsfalse")
-	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public List<Question> getAllQuestionsFalse() {
-		return questionService.getAllQuestionsFalse();
-	}
+
 	
 	@GetMapping("/getallquestionsbytopic")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
@@ -95,36 +85,21 @@ public class QuestionController {
 								@Validated @RequestBody Question question) {
 		questionService.approveQuestion(adminId, question);
 	}
+	
+	@PutMapping("/denyquestion")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
+    public Question denyQuestion( @Validated @RequestBody Question q) {
+		
+        return questionService.denyQuestion( q);
+    }
+	
+	/*@PutMapping("/searchquestions/{s}")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
+	public List<Question> searchQuestion(@Validated @PathVariable("s") String s){
+	
+		return questionService.searchQuestion(s);
+	}*/
 
-//	@DeleteMapping("/denyquestion")
 
 }
 
-class updateQuestionStatusContent {
-	
-	int id;
-	String status;
-	
-	public updateQuestionStatusContent(int id, String status) {
-		super();
-		this.id = id;
-		this.status = status;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	
-}

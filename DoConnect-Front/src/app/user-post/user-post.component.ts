@@ -26,9 +26,9 @@ export class UserPostComponent implements OnInit {
   constructor(private questionService:QuestionService, router:Router, private datePipe: DatePipe) {}
 
   loadPosts() {
-    // this.questionService.getAllQuestions().subscribe((data: Question[])=>{
-    //   this.questions=data
-    // });
+     //this.questionService.getAllQuestions().subscribe((data: Question[])=>{
+     //  this.questions=data
+     //});
 
     this.questionService.getApprovedQuestions().subscribe((data: Question[])=>{
       this.questions=data
