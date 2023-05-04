@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { UserAuthService } from "./user-auth-service";
 import { Question } from "../model/question";
+import { Observable } from "rxjs";
 
 @Injectable({
     providedIn:"root"
@@ -12,20 +13,15 @@ export class QuestionService {
     addQuestionUrl:String = "http://localhost:8080/addquestion"
     updateQuestionUrl:String = "http://localhost:8080/updatequestion"
     deleteQuestionUrl:String = "http://localhost:8080/deletequestionbyid"
-    getAllQuestionsUrl:String = "http://localhost:8080/getallquestions"
+    private getAllQuestionsUrl:String = "http://localhost:8080/getallquestions"
     getAllQuestionsFalseUrl:String = "http://localhost:8080/getallquestionsfalse"
     getAllQuestionsByTopicUrl:String = "http://localhost:8080/getallquestionsbytopic"
     getAllQuestionsByIdUrl:String = "http://localhost:8080/getallquestionsbyid"
-    getAllPendingUrl:String="http://localhost:8080/getpendingquestions";
-    getAllApprovedQuestionsUrl:String="http://localhost:8080/getapprovedquestions"
-    approveQuestionUrl:String="http://localhost:8080/approvequestion";
-    denyQuestionUrl:String="http://localhost:8080/denyquestion";
-    private baseUrl = 'http://localhost:8080';
-
-    private getAllQuestionsUrl:String = "http://localhost:8080/getallquestions";
     private getAllPendingUrl:String="http://localhost:8080/getpendingquestions";
+    getAllApprovedQuestionsUrl:String="http://localhost:8080/getapprovedquestions"
     private approveQuestionUrl:String="http://localhost:8080/approvequestion";
     private denyQuestionUrl:String="http://localhost:8080/denyquestion";
+    private baseUrl = 'http://localhost:8080';
     private searchQuestionUrl="http://localhost:8080/searchquestions";
 
     constructor(private http:HttpClient,
@@ -37,10 +33,6 @@ export class QuestionService {
         });
     AdminId:string='';
     AId:number=0;
-    getAllQuestions() {
-
-        return this.http.get<Question[]>(`${this.getAllQuestionsUrl}`)
-    }
 
     getPendingQuestions() {
 
