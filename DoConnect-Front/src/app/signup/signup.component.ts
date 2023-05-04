@@ -26,7 +26,7 @@ export class SignupComponent {
   );
   signup(signUpForm: NgForm){
     console.log(signUpForm.value);
-
+    
     this.userService.createUser(signUpForm.value).subscribe((data:User)=>{
       console.log(data);
   });

@@ -1,14 +1,13 @@
 package cogent.infotech.com.service;
 
-import java.util.List;
-import java.util.*;
-import java.util.Optional;
-
+import cogent.infotech.com.entity.Question;
+import cogent.infotech.com.entity.User;
+import cogent.infotech.com.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cogent.infotech.com.entity.*;
-import cogent.infotech.com.repository.QuestionRepository;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class QuestionServiceImpl implements QuestionService{
@@ -36,12 +35,12 @@ public class QuestionServiceImpl implements QuestionService{
 	public void addQuestion(Question question) {
 		ArrayList<User> admins = (ArrayList<User>)userService.getAllUsersByUserType("admin");
 		for(int i = 0; i < admins.size(); i++) {
-			emailService.sendEmail(admins.get(i).getEmail(),
-					"Dear "+ admins.get(i).getUsername()+",\n\n"
-					+"A new question needs to be approved.\n\n"
-					+ "Question title: " + question.getTitle() + "\nQuestion Description: " + question.getDescription_question()+"\n"
-					+"\nThank you,\nFrom DoConnect Email Service.",
-					"A new question needs to be approved");
+//			emailService.sendEmail(admins.get(i).getEmail(),
+//					"Dear "+ admins.get(i).getUsername()+",\n\n"
+//					+"A new question needs to be approved.\n\n"
+//					+ "Question title: " + question.getTitle() + "\nQuestion Description: " + question.getDescription_question()+"\n"
+//					+"\nThank you,\nFrom DoConnect Email Service.",
+//					"A new question needs to be approved");
 		}
 		questionRepository.save(question);
 	}
@@ -57,8 +56,8 @@ public class QuestionServiceImpl implements QuestionService{
 	}
 	
 	@Override
-	public List<Question> getAllQuestionsById(int id) {
-		return (List)questionRepository.findById(id);
+	public Question getQuestionById(int id) {
+		return questionRepository.findById(id);
 	}
 	
 	@Override
@@ -66,4 +65,21 @@ public class QuestionServiceImpl implements QuestionService{
 		return (List)questionRepository.findByTopic(topic);
 	}
 
+	@Override
+	public List<Question> getAllPendingQuestions() {
+		return questionRepository.findAllPending();
+	}
+
+	@Override
+	public List<Question> getAllApprovedQuestions() {
+		return questionRepository.findAllApproved();
+	}
+
+	@Override
+	public void approveQuestion(int adminId, Question question) {
+		Question questionToApprove = questionRepository.findById(question.getId());
+		questionToApprove.setStatus("approved");
+		questionToApprove.setQapproved_by(userService.getUserById(adminId));
+		questionRepository.save(questionToApprove);
+	}
 }

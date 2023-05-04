@@ -24,7 +24,7 @@ import { Socket } from 'socket.io-client';
 import { ChatComponent } from './chat/chat.component';
 import { MatButtonModule } from '@angular/material/button';
 import { UserSearchComponent } from './user-search/user-search.component';
-
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -58,8 +58,10 @@ import { UserSearchComponent } from './user-search/user-search.component';
     {
       provide:HTTP_INTERCEPTORS, 
       useClass:TokenInterceptorService, 
-      multi:true}
-    ],
+      multi:true
+    }, 
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

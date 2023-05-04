@@ -1,4 +1,38 @@
-<div class="user-posts-container">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+
+<H1>User Page</H1>
+<div class="new-question-container">
+    <br>
+    <button mat-raised-button (click)="addNewQuestion()" color="primary">Add New Question</button>
+    <form *ngIf="addNewQuestionFormVisible" novalidate #newQuestionForm="ngForm" (ngSubmit)="submitNewQuestion(newQuestionForm)" class="needs-validation">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input class="form-control" name="title" id="title" type="text" placeholder="Title" [(ngModel)]="question.title" required>
+        </div>
+
+        <div class="form-group">
+        <label for="topic">Topic:</label>
+        <input class="form-control" name="topic" id="topic" type="text" placeholder="Topic" [(ngModel)]="question.topic" required>
+        </div>
+
+        <div class="form-group">
+        <label for="description_question">Description:</label>
+        <input class="form-control" name="description_question" id="description_question" type="text" placeholder="Description" [(ngModel)]="question.description_question" required>
+        </div>
+
+        <div class="form-group">
+        <label for="image_src">Image:</label>
+        <input class="form-control" name="image" id="image" type="text" placeholder="Image Source Text" [(ngModel)]="question.image_src" required>
+        </div>
+
+        <button mat-raised-button type="submit" color="primary">Submit Question</button>
+    </form>
+</div>
+
+<br>
+
+<div class="question-list-container">
     <h1>List of Questions</h1>
     <table class="table table-striped">
         <thead>
