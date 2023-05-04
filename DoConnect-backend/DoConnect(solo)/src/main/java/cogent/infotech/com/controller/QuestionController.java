@@ -1,8 +1,9 @@
-package cogent.infotech.com.controller;
+	package cogent.infotech.com.controller;
 
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -46,9 +47,9 @@ public class QuestionController {
 		questionService.updateQuestionStatus(id, status, user.getId());
 	}
 	
-	@DeleteMapping("/deletequestionbyid")
+	@DeleteMapping("/deletequestionbyid/{id}")
 	@PreAuthorize("hasRole('admin')")
-	public void deleteQuestionById(@Validated @RequestBody int id) {
+	public void deleteQuestionById(@Validated @PathVariable("id") int id) {
 		questionService.deleteQuestionById(id);
 	}
 	
@@ -70,11 +71,32 @@ public class QuestionController {
 		return questionService.getAllQuestionsByTopic(topic);
 	}
 	
-	@GetMapping("/getallquestionsbyid")
+	@GetMapping("/getallquestionsbyid/{id}")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public List<Question> getAllQuestionsById(@Validated @RequestBody int id) {
-		return questionService.getAllQuestionsById(id);
+	public Question getQuestionById(@Validated @PathVariable("id") int id) {
+		return questionService.getQuestionById(id);
 	}
+
+	@GetMapping("/getpendingquestions")
+	@PreAuthorize("hasRole('admin')")
+	public List<Question> getAllPendingQuestions() {
+		return questionService.getAllPendingQuestions();
+	}
+
+	@GetMapping("/getapprovedquestions")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
+	public List<Question> getAllApprovedQuestions() {
+		return questionService.getAllApprovedQuestions();
+	}
+
+	@PutMapping("/approvequestion/{adminId}")
+	@PreAuthorize("hasRole('admin')")
+	public void approveQuestion(@Validated @PathVariable("adminId") int adminId,
+								@Validated @RequestBody Question question) {
+		questionService.approveQuestion(adminId, question);
+	}
+
+//	@DeleteMapping("/denyquestion")
 
 }
 
