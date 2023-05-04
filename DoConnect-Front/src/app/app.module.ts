@@ -23,6 +23,7 @@ import { TokenInterceptorService } from './service/token-interceptor-service';
 import { Socket } from 'socket.io-client';
 import { ChatComponent } from './chat/chat.component';
 import { MatButtonModule } from '@angular/material/button';
+import { UserSearchComponent } from './user-search/user-search.component';
 
 
 
@@ -34,7 +35,8 @@ import { MatButtonModule } from '@angular/material/button';
     SignupComponent,
     UserPostComponent,
     AdminPostComponent,
-    ChatComponent
+    ChatComponent,
+    UserSearchComponent
   ],
   imports: [
     BrowserModule,

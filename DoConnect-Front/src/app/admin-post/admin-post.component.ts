@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Question } from '../model/question';
 import { QuestionService } from '../service/questionService';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-admin-post',
   templateUrl: './admin-post.component.html',
   styleUrls: ['./admin-post.component.css']
 })
-export class AdminPostComponent implements OnInit{
+export class AdminPostComponent implements OnInit, AfterViewInit{
 
   questions:Question[]=[]
   question:Question=new Question(0, "", "", "", "", "", "", 0, 0)
@@ -19,9 +20,15 @@ export class AdminPostComponent implements OnInit{
       this.questions=data
     });*/
     this.loadPosts();
+
+  }
+  ngAfterViewInit() {
+    
+
   }
 
-  constructor(private questionService:QuestionService, router:Router) {}
+
+  constructor(private questionService:QuestionService, router:Router, location:Location) {}
 
   loadPosts() {
     this.questionService.getPendingQuestions().subscribe((data: Question[])=>{
@@ -42,6 +49,10 @@ export class AdminPostComponent implements OnInit{
       this.loadPosts();
     }
     );
+  }
+
+  refresh(){
+    location.reload;
   }
 
 

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { UserAuthService } from './service/user-auth-service';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -9,12 +10,15 @@ import { Observable } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, AfterViewInit {
   title = 'DoConnect-Front';
+
+
   isLoggedIn:boolean=false;
   isLoggedIn$: Observable<boolean> ;
   username:string=this.userAuthService.getUserName();
-  constructor(private userAuthService: UserAuthService, private router:Router) {
+  username$ = new BehaviorSubject<string>('');
+  constructor(private userAuthService: UserAuthService, private router:Router, private location:Location) {
     this.isLoggedIn$ = this.userAuthService.isLoggedIn$();
     
 
@@ -22,15 +26,40 @@ export class AppComponent {
 
   ngOnInit(): void {
 
+   
+    setTimeout(() => {
+      this.username$.next(this.username);
+    }, 100);
+  
+  }
+  ngAfterViewInit() {
+    //location.reload();
+    
+
   }
 
   onLogout() {
     this.userAuthService.clear();
 
     this.userAuthService.setIsLoggedIn(false);
+    this.username='';
+    setTimeout(() => {
+      this.username$.next(this.username);
+    }, 10);
+    //location.reload();
 
     this.router.navigate(['/home']);
 
+
+
+  }
+
+  searchText: string = '';
+
+  search(){
+    if (this.searchText) {
+      this.router.navigate(['/usersearch'], { queryParams: { q: this.searchText } });
+    }
   }
 
 }

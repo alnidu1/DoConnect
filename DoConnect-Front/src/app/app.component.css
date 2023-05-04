@@ -1,6 +1,9 @@
 .spacer {
     flex: 1 1 10px;
   }
+  .xxxs-spacer {
+    flex: 1 1 1px;
+  }
   .header {
     display: flex;
     justify-content: space-between;
@@ -26,7 +29,7 @@
   }
 
   .larger-icon {
-    font-size: 30px; /* adjust this value to change the icon size */
+    font-size: 30px; 
   }
   
   
