@@ -8,9 +8,9 @@
     </thead>
     <tbody>
         <tr *ngFor="let u of users">
-            <td>{{u.id}}</td>
-            <td>{{u.name}}</td>
-            <button mat-raised-button (click)="openChat(u.name)" color="primary">Chat Now</button>
+            <td *ngIf="u.username != this.fromuser">{{u.id}}</td>
+            <td *ngIf="u.username != this.fromuser">{{u.name}}</td>
+            <button *ngIf="u.username != this.fromuser" mat-raised-button (click)="openChat(u.name)" color="primary">Chat Now</button>
         </tr>
     </tbody>
 </table>

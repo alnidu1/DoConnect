@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { User } from '../model/user';
 import { UserService } from '../service/user.service';
+import { UserAuthService } from '../service/user-auth-service';
 import { Router } from '@angular/router';
 import { SharedChatService } from '../service/shared-chat.service';
 @Component({
@@ -10,9 +11,11 @@ import { SharedChatService } from '../service/shared-chat.service';
 })
 export class ChatlistComponent implements OnInit{
   users:User[];
+  fromuser: string = this.userAuthService.getUserName();
   touser: string = "";
 
-  constructor(private userService:UserService, private router:Router, private sharedChatService:SharedChatService){
+
+  constructor(private userAuthService:UserAuthService, private userService:UserService, private router:Router, private sharedChatService:SharedChatService){
     this.users=[];
   }
   ngOnInit(): void {
