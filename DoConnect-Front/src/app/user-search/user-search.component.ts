@@ -18,6 +18,8 @@ export class UserSearchComponent implements OnInit {
   ngOnInit(): void {
     this.questions = history.state.questions;
   }
+
+  
 }
   
 

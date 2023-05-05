@@ -5,10 +5,13 @@
 
       <div class="xxxs-spacer"></div>
 
-      <form (ngSubmit)="searchQuestion()">
-        <input type="text" name="searchTerm" [(ngModel)]="searchTerm">
-        <button type="submit">Search</button>
-      </form>
+      <ng-container *ngIf="isUserPostPath() || isAdminPostPath()">
+        <form (ngSubmit)="searchQuestion()">
+          <input type="text" name="searchTerm" [(ngModel)]="searchTerm">
+          <button type="submit">Search</button>
+        </form>
+      </ng-container>
+      
 
       <div class="spacer"></div>
 

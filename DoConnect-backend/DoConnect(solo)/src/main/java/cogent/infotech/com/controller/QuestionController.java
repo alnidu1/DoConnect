@@ -93,12 +93,12 @@ public class QuestionController {
         return questionService.denyQuestion( q);
     }
 	
-	/*@PutMapping("/searchquestions/{s}")
+	@GetMapping("/searchquestions/{s}")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
 	public List<Question> searchQuestion(@Validated @PathVariable("s") String s){
 	
 		return questionService.searchQuestion(s);
-	}*/
+	}
 
 
 }

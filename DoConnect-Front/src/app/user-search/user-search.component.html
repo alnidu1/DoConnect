@@ -2,7 +2,8 @@
 <div *ngIf="questions && questions.length > 0">
   <ul>
     <li *ngFor="let question of questions">
-      <a [routerLink]="['/question', question.id]">{{ question.title }}</a>
+      <a [routerLink]="['/userpost', question.id]">{{ question.title }}</a>
+      <div>{{question.description_question}}</div>
     </li>
   </ul>
 </div>

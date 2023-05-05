@@ -73,10 +73,10 @@ public class QuestionServiceImpl implements QuestionService{
 		        
 		
 	}
-	/*@Override
+	@Override
 	public List<Question> searchQuestion(String q) {
 		return questionRepository.findByDescriptionQuestionContaining(q);
-	}*/
+	}
 	@Override
 	public Question denyQuestion(Question q) {
 		q.setStatus("denied");

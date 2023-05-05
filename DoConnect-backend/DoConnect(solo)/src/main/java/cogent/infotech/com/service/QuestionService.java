@@ -15,6 +15,6 @@ public interface QuestionService {
 	public List<Question> getAllPendingQuestions();
 	public List<Question> getAllApprovedQuestions();
 	public Question approveQuestion(int adminId, Question question);
-	//public List<Question> searchQuestion(String q);
+	public List<Question> searchQuestion(String q);
 	public Question denyQuestion(Question q);
 }
