@@ -14,16 +14,19 @@ import cogent.infotech.com.entity.User;
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, Integer> {
 	
-	@Query(value ="SELECT * From question where status = ?1"
-			,nativeQuery = true)
+	 @Query(value = "SELECT * FROM question WHERE description_question LIKE %:keyword%", nativeQuery = true)
+	    List<Question> findByDescriptionQuestionContaining(String keyword);
+	 
 	List<Question> findByStatus(String status);
-	@Modifying
-	@Transactional
-	@Query(value =
-			"UPDATE Question q set q.status = ?2, q.qapproved_by = ?3 where q.id = ?1"
-			,nativeQuery = true)
-	void updateQuestionStatus(int id, String status, int userid);
-	List<Question> findById(int id);
+	
+	Question findById(int id);
 	List<Question> findByTopic(String topic);
 
+	default List<Question> findAllPending() {
+		return findByStatus("pending");
+	}
+
+	default List<Question> findAllApproved() {
+		return findByStatus("approved");
+	}
 }

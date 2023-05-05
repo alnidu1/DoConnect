@@ -34,7 +34,7 @@ export class ChatService {
     console.log('test');
     return this.http.post(`${this.postChatUrl}`, chat,{
       headers: this.requestHeader,
-      responseType: 'json'
+      responseType: 'text'
     });
   }
   

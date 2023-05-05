@@ -1,14 +1,13 @@
 package cogent.infotech.com.service;
 
-import java.util.List;
-import java.util.*;
-import java.util.Optional;
-
+import cogent.infotech.com.entity.Question;
+import cogent.infotech.com.entity.User;
+import cogent.infotech.com.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cogent.infotech.com.entity.*;
-import cogent.infotech.com.repository.QuestionRepository;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class QuestionServiceImpl implements QuestionService{
@@ -22,10 +21,7 @@ public class QuestionServiceImpl implements QuestionService{
 	@Autowired
 	private UserServiceImpl userService;
 
-	@Override
-	public List<Question> getAllQuestionsFalse() {
-		return (List)questionRepository.findByStatus("false");
-	}
+	
 
 	@Override
 	public List<Question> getAllQuestions() {
@@ -36,20 +32,12 @@ public class QuestionServiceImpl implements QuestionService{
 	public void addQuestion(Question question) {
 		ArrayList<User> admins = (ArrayList<User>)userService.getAllUsersByUserType("admin");
 		for(int i = 0; i < admins.size(); i++) {
-			emailService.sendEmail(admins.get(i).getEmail(),
-					"Dear "+ admins.get(i).getUsername()+",\n\n"
-					+"A new question needs to be approved.\n\n"
-					+ "Question title: " + question.getTitle() + "\nQuestion Description: " + question.getDescription_question()+"\n"
-					+"\nThank you,\nFrom DoConnect Email Service.",
-					"A new question needs to be approved");
+
 		}
 		questionRepository.save(question);
 	}
 	
-	@Override
-	public void updateQuestionStatus(int id, String newStatus, int userid) {
-		questionRepository.updateQuestionStatus(id , newStatus, userid);
-	}
+	
 	
 	@Override
 	public void deleteQuestionById(int id) {
@@ -57,13 +45,46 @@ public class QuestionServiceImpl implements QuestionService{
 	}
 	
 	@Override
-	public List<Question> getAllQuestionsById(int id) {
-		return (List)questionRepository.findById(id);
+	public Question getQuestionById(int id) {
+		return questionRepository.findById(id);
 	}
 	
 	@Override
 	public List<Question> getAllQuestionsByTopic(String topic) {
 		return (List)questionRepository.findByTopic(topic);
 	}
+
+	@Override
+	public List<Question> getAllPendingQuestions() {
+		return questionRepository.findAllPending();
+	}
+
+	@Override
+	public List<Question> getAllApprovedQuestions() {
+		return questionRepository.findAllApproved();
+	}
+
+	@Override
+	public Question approveQuestion(int id, Question q) {
+		
+		q.setQapproved_by(userService.findById(id));
+		q.setStatus("approved");
+		return  questionRepository.save(q);
+		        
+		
+	}
+	@Override
+	public List<Question> searchQuestion(String q) {
+		return questionRepository.findByDescriptionQuestionContaining(q);
+	}
+	@Override
+	public Question denyQuestion(Question q) {
+		q.setStatus("denied");
+		return  questionRepository.save(q);
+		        
+		
+	}
+
+	
 
 }

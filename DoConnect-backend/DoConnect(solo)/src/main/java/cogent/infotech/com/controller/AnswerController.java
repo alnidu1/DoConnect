@@ -19,7 +19,7 @@ import cogent.infotech.com.service.AnswerService;
 import cogent.infotech.com.entity.Answer;
 import cogent.infotech.com.entity.User;
 
-@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin
 @RestController
 public class AnswerController {
 	
@@ -33,13 +33,7 @@ public class AnswerController {
 	}
 	
 
-	@PutMapping("/updateanswer/{id}/{status}")
-	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public void updateAnswerStatusPath(@Validated @PathVariable("id") int id, 
-			@Validated @PathVariable("status") String status,
-			@Validated @RequestBody User user) {
-		answerService.updateAnswerStatus(id, status, user.getId());
-	}
+	
 	
 	
 	@DeleteMapping("/deleteanswerbyid/{id}")
@@ -78,5 +72,6 @@ public class AnswerController {
 		return answerService.getAllAnswersById(id);
 	}
 
+	
 }
 

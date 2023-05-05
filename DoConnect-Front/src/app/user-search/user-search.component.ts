@@ -1,23 +1,25 @@
 import { Component } from '@angular/core';
+import { QuestionService } from '../service/questionService';
+import { Router} from '@angular/router';
+import { Question } from '../model/question';
+import { OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-search',
   templateUrl: './user-search.component.html',
   styleUrls: ['./user-search.component.css']
 })
-export class UserSearchComponent {
+export class UserSearchComponent implements OnInit {
+  questions: Question[]=[];
 
-  searchQuery: string='';
-  exampleposts: any[] = [
-    {title: 'Post 1', description: 'This is the first post'},
-    {title: 'Post 2', description: 'This is the second post'},
-    {title: 'Post 3', description: 'This is the third post'}
-  ];
+  constructor(private route: ActivatedRoute) {}
 
-  examplesearchPosts() {
-    return this.exampleposts.filter(post => {
-      return post.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-             post.description.toLowerCase().includes(this.searchQuery.toLowerCase());
-    });
+  ngOnInit(): void {
+    this.questions = history.state.questions;
   }
+
+  
 }
+  
+

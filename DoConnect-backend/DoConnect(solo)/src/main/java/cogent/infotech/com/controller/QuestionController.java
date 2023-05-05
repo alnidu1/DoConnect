@@ -1,8 +1,9 @@
-package cogent.infotech.com.controller;
+	package cogent.infotech.com.controller;
 
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,7 +25,7 @@ import cogent.infotech.com.entity.Answer;
 import cogent.infotech.com.entity.Question;
 import cogent.infotech.com.entity.User;
 
-@CrossOrigin()
+@CrossOrigin
 @RestController
 public class QuestionController {
 	
@@ -38,17 +39,11 @@ public class QuestionController {
 	}
 	
 
-	@PutMapping("/updatequestion/{id}/{status}")
-	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public void updateQuestion(@Validated @PathVariable("id") int id, 
-			@Validated @PathVariable("status") String status,
-			@Validated @RequestBody User user) {
-		questionService.updateQuestionStatus(id, status, user.getId());
-	}
+
 	
-	@DeleteMapping("/deletequestionbyid")
+	@DeleteMapping("/deletequestionbyid/{id}")
 	@PreAuthorize("hasRole('admin')")
-	public void deleteQuestionById(@Validated @RequestBody int id) {
+	public void deleteQuestionById(@Validated @PathVariable("id") int id) {
 		questionService.deleteQuestionById(id);
 	}
 	
@@ -58,11 +53,7 @@ public class QuestionController {
 		return questionService.getAllQuestions();
 	}
 	
-	@GetMapping("/getallquestionsfalse")
-	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public List<Question> getAllQuestionsFalse() {
-		return questionService.getAllQuestionsFalse();
-	}
+
 	
 	@GetMapping("/getallquestionsbytopic")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
@@ -70,39 +61,45 @@ public class QuestionController {
 		return questionService.getAllQuestionsByTopic(topic);
 	}
 	
-	@GetMapping("/getallquestionsbyid")
+	@GetMapping("/getallquestionsbyid/{id}")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public List<Question> getAllQuestionsById(@Validated @RequestBody int id) {
-		return questionService.getAllQuestionsById(id);
+	public Question getQuestionById(@Validated @PathVariable("id") int id) {
+		return questionService.getQuestionById(id);
 	}
+
+	@GetMapping("/getpendingquestions")
+	@PreAuthorize("hasRole('admin')")
+	public List<Question> getAllPendingQuestions() {
+		return questionService.getAllPendingQuestions();
+	}
+
+	@GetMapping("/getapprovedquestions")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
+	public List<Question> getAllApprovedQuestions() {
+		return questionService.getAllApprovedQuestions();
+	}
+
+	@PutMapping("/approvequestion/{adminId}")
+	@PreAuthorize("hasRole('admin')")
+	public void approveQuestion(@Validated @PathVariable("adminId") int adminId,
+								@Validated @RequestBody Question question) {
+		questionService.approveQuestion(adminId, question);
+	}
+	
+	@PutMapping("/denyquestion")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
+    public Question denyQuestion( @Validated @RequestBody Question q) {
+		
+        return questionService.denyQuestion( q);
+    }
+	
+	@GetMapping("/searchquestions/{s}")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
+	public List<Question> searchQuestion(@Validated @PathVariable("s") String s){
+	
+		return questionService.searchQuestion(s);
+	}
+
 
 }
 
-class updateQuestionStatusContent {
-	
-	int id;
-	String status;
-	
-	public updateQuestionStatusContent(int id, String status) {
-		super();
-		this.id = id;
-		this.status = status;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	
-}

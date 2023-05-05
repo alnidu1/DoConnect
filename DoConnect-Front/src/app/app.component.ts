@@ -3,6 +3,9 @@ import { UserAuthService } from './service/user-auth-service';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Location } from '@angular/common';
+import { ChangeDetectorRef } from '@angular/core';
+import { Question } from './model/question';
+import { QuestionService } from './service/questionService';
 
 
 @Component({
@@ -18,8 +21,20 @@ export class AppComponent implements OnInit, AfterViewInit {
   isLoggedIn$: Observable<boolean> ;
   username:string=this.userAuthService.getUserName();
   username$ = new BehaviorSubject<string>('');
-  constructor(private userAuthService: UserAuthService, private router:Router, private location:Location) {
+
+  constructor(private userAuthService: UserAuthService, private router:Router, private location:Location, private cd: ChangeDetectorRef,
+    private questionService:QuestionService
+    ) {
     this.isLoggedIn$ = this.userAuthService.isLoggedIn$();
+    this.userAuthService.isLoggedIn$().subscribe(
+      isLoggedIn => {
+        if (isLoggedIn) {
+          this.username = this.userAuthService.getUserName();
+        } else {
+          this.username = "";
+        }
+      }
+    );
     
 
   }
@@ -27,28 +42,28 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
 
    
-    setTimeout(() => {
-      this.username$.next(this.username);
-    }, 100);
+    this.username = this.userAuthService.getUserName();
+
+  
   
   }
   ngAfterViewInit() {
-    //location.reload();
-    
+   
 
   }
 
   onLogout() {
     this.userAuthService.clear();
+  this.userAuthService.setIsLoggedIn(false);
+  this.username = '';
 
-    this.userAuthService.setIsLoggedIn(false);
-    this.username='';
-    setTimeout(() => {
-      this.username$.next(this.username);
-    }, 10);
-    //location.reload();
+  // Emit a new value to the username$ BehaviorSubject
+  this.username$.next(this.username);
 
-    this.router.navigate(['/home']);
+  // Manually trigger a change detection cycle
+  this.cd.detectChanges();
+
+  this.router.navigate(['/home']);
 
 
 
@@ -58,12 +73,41 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/chatlist']);
   }
 
+  homeButton(){
+    if(this.username==''){
+      this.router.navigate(['/home']);
+
+    }
+    else if (this.userAuthService.getUserUserType()=='admin') {
+      this.router.navigate(['/adminpost']);
+
+    } else {
+      this.router.navigate(['/userpost']);
+
+    }
+  }
+  
   searchText: string = '';
 
-  search(){
-    if (this.searchText) {
-      this.router.navigate(['/usersearch'], { queryParams: { q: this.searchText } });
-    }
+  searchTerm: string='';
+  questions: Question[]=[];
+  searchQuestion() {
+    this.questionService.searchQuestion(this.searchTerm).subscribe(
+      (response) => {
+        this.questions = response;
+        this.router.navigate(['/usersearch'], { state: { questions: this.questions } });
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+  isUserPostPath(): boolean {
+    return this.router.url.startsWith('/userpost');
+  }
+  
+  isAdminPostPath(): boolean {
+    return this.router.url.startsWith('/adminpost');
   }
 
 }
