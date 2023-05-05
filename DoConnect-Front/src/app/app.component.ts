@@ -54,6 +54,10 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   }
 
+  onChat() {
+    this.router.navigate(['/chatlist']);
+  }
+
   searchText: string = '';
 
   search(){

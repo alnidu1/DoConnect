@@ -1,7 +1,7 @@
 <div>
     <ul>
-      <li *ngFor="let message of messages">{{ message }}</li>
+      <li *ngFor="let chat of chats">{{chat.fromuser}}: {{ chat.message }}</li>
     </ul>
     <input type="text" [(ngModel)]="newMessage">
-    <button (click)="sendMessage()">Send</button>
+    <button (click)="sendChat(newMessage)">Send</button>
   </div>

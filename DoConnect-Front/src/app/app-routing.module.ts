@@ -7,6 +7,7 @@ import { UserPostComponent } from './user-post/user-post.component';
 import { AdminPostComponent } from './admin-post/admin-post.component';
 import { ChatComponent } from './chat/chat.component';
 import { UserSearchComponent } from './user-search/user-search.component';
+import { ChatlistComponent } from './chatlist/chatlist.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path: "userpost", component:UserPostComponent},
   {path: "adminpost", component:AdminPostComponent},
   {path:"chat", component: ChatComponent},
-  {path:"usersearch", component:UserSearchComponent}
+  {path:"usersearch", component:UserSearchComponent},
+  {path: "chatlist", component: ChatlistComponent}
 
 
 ];

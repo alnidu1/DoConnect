@@ -1,0 +1,13 @@
+<table>
+    <thead>
+        <th>Id</th>
+        <th>Name</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let u of users">
+            <td>{{u.id}}</td>
+            <td>{{u.name}}</td>
+            <button (click)="openChat(u.name)">Chat Now</button>
+        </tr>
+    </tbody>
+</table>

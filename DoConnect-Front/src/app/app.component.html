@@ -29,6 +29,7 @@
         <button *ngIf="!( username$ | async )" mat-raised-button routerLink="login" routerLinkActive="active" class="nav-button">
           Login|Register
         </button>
+        <button *ngIf="( username$ | async )" mat-raised-button (click)="onChat()" class="nav-button">Chat</button>
         <button *ngIf="( username$ | async )" mat-raised-button (click)="onLogout()" class="nav-button">
           <mat-icon aria-hidden="false" aria-label="logout icon" style="font-size: 18px;" >exit_to_app</mat-icon>
 
