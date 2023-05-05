@@ -12,7 +12,6 @@ public interface UserService {
 	public List<User> getAllUsers();
 	public void addNewUser(User user);
 
-	public Optional<User> getAllUsersById(int id);
 	public User getUserById(int id);
 	public List<User> getAllUsersByName(String name);
 	public User getUserByUsername(String username);

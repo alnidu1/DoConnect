@@ -36,6 +36,7 @@
 </div>
 
 <br>
+
 <div class="question-list-container">
     <h1>List of Questions</h1>
     <table class="table table-striped">
@@ -54,10 +55,11 @@
         <tbody>
             <tr *ngFor="let q of questions">
                 <td>{{q.id}}</td>
-                <td>{{q.title}}</td>
+                <td><a [routerLink]="['/questionforum', q.id]" href="/questionforum">{{q.title}}</a></td>
                 <td>{{q.topic}}</td>
                 <td>{{q.description_question}}</td>
-                <td><img [src]="q.image_src" alt="My Image"></td>
+                <td><img [src]="q.image_src" alt="My Image">
+                </td>
                 <td>{{q.datetime}}</td>
                 <td>{{q.status}}</td>
                 <td>
@@ -75,7 +77,7 @@
                             <input class="form-control" name="image_src" id="image_src" type="text" placeholder="Image"
                                 [(ngModel)]="newAnswerForm.value.image_src" required>
                         </div>
-                       
+
                         <button mat-raised-button type="submit" color="primary">Submit Answer</button>
                     </form>
                     <button mat-raised-button  (click)="showAnswers(q)">View Answers</button>
@@ -83,7 +85,7 @@
                         <ul *ngFor="let a of answers">
                             <li> {{a.id}} </li>
                             <li> {{a.description_answer}}</li>
-                            
+
                          </ul>
                     </form>
                 </td>
