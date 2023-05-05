@@ -30,8 +30,8 @@ export class AnswerService {
         return this.http.delete(`${this.deleteAnswerByIdUrl}/${answerId}`)
     }
 
-    getApprovedAnswers() {
-        return this.http.get<Answer[]>(`${this.getApprovedAnswersUrl}`)
+    getApprovedAnswers(questionId:number) {
+        return this.http.get<Answer[]>(`${this.getApprovedAnswersUrl}/${questionId}`)
     }
 
     getPendingAnswers() {

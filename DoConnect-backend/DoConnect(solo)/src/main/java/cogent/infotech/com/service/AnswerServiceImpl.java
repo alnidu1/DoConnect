@@ -69,8 +69,8 @@ public class AnswerServiceImpl implements AnswerService{
 	}
 
 	@Override
-	public List<Answer> getAllApprovedAnswers() {
-		return answerRepository.findAllApproved();
+	public List<Answer> getAllApprovedAnswers(int question_id) {
+		return answerRepository.findAllApproved(question_id);
 	}
 
 	@Override

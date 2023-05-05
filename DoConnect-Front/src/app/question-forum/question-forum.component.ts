@@ -47,7 +47,7 @@ export class QuestionForumComponent implements OnInit {
     }
 
     loadAnswers() {
-        this.questionService.getAnswersForQuestion(this.qId).subscribe((data: Answer[]) => {
+        this.answerService.getApprovedAnswers(this.qId).subscribe((data: Answer[]) => {
             this.answers = data
         })
     }

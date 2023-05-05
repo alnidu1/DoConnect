@@ -15,7 +15,7 @@ public interface AnswerService {
 	public void deleteAnswerById(int id);
 	public List<Answer> getAllAnswersByQuestionId(int questionId);
 	public List<Answer> getAllPendingAnswers();
-	public List<Answer> getAllApprovedAnswers();
+	public List<Answer> getAllApprovedAnswers(int question_id);
 	public void approveAnswer(int adminId, Answer answer);
 	public void denyAnswer(Answer answer);
 }

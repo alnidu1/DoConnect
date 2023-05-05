@@ -41,7 +41,7 @@ public class AnswerController {
 		answers.add(answer);
 		q.setAnswers(answers);
 		qs.updateAnswers(q);
-		answerService.addAnswer(answer);
+//		answerService.addAnswer(answer);
 	}
 	
 	
@@ -52,9 +52,9 @@ public class AnswerController {
 		answerService.deleteAnswerById(id);
 	}
 
-	@GetMapping("/getapprovedanswers")
+	@GetMapping("/getapprovedanswers/{question_id}")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public List<Answer> getApprovedAnswers() { return answerService.getAllApprovedAnswers(); }
+	public List<Answer> getApprovedAnswers(@Validated @PathVariable("question_id") int question_id) { return answerService.getAllApprovedAnswers(question_id); }
 
 	@GetMapping("/getpendinganswers")
 	@PreAuthorize("hasRole('admin')")

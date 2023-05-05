@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Subject } from 'rxjs';
+import { AnswerService } from '../service/answerService';
 @Component({
   selector: 'app-user-post',
   templateUrl: './user-post.component.html',
@@ -27,8 +28,7 @@ export class UserPostComponent implements OnInit {
   }
 
   constructor(private questionService:QuestionService, router:Router, private datePipe: DatePipe, private authservice: UserAuthService,
-    private userService:UserService
-    ) {}
+    private userService:UserService, private answerService:AnswerService) {}
 
   loadPosts() {
 
@@ -74,7 +74,7 @@ export class UserPostComponent implements OnInit {
     this.showAnswer=!this.showAnswer;
     this.selectedQuestion = question;
     console.log(question.id);
-    this.questionService.getAnswersForQuestion(question.id).subscribe((answers: Answer[]) => {
+    this.answerService.getApprovedAnswers(question.id).subscribe((answers: Answer[]) => {
       this.answers = answers;
     });
   }

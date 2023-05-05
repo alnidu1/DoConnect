@@ -20,6 +20,11 @@ public interface AnswerRepository extends JpaRepository<Answer, Integer> {
 	@Query(value ="SELECT * From answer a where a.status = ?1"
 			,nativeQuery = true)
 	List<Answer> findByStatus(String status);
+
+	@Query(value ="SELECT * From answer a where a.status = ?1 and a.question_id=?2"
+			,nativeQuery = true)
+	List<Answer> findByStatus(String status, int question_id);
+
 	@Modifying
 	@Transactional
 	@Query(value ="UPDATE Answer a set a.status = ?2, a.aapproved_id = ?3 where a.id = ?1"
@@ -36,8 +41,8 @@ public interface AnswerRepository extends JpaRepository<Answer, Integer> {
 		return findByStatus("pending");
 	}
 
-	default List<Answer> findAllApproved() {
-		return findByStatus("approved");
+	default List<Answer> findAllApproved(int question_id) {
+		return findByStatus("approved", question_id);
 	}
 
 }
