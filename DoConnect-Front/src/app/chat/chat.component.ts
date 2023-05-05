@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { io } from 'socket.io-client'; 
+import { ViewChild} from '@angular/core';
 
 
 @Component({
@@ -8,20 +9,21 @@ import { io } from 'socket.io-client';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent {
-  private socket: any;
-  messages: string[] = [];
-  newMessage: string = '';
+  message: string = '';
+  @ViewChild('messages', {static: true}) messages: ElementRef= new ElementRef("");
 
-  constructor() {
-    
-    this.socket = io('http://localhost:3000');
-    this.socket.on('message', (data: string) => {
-      this.messages.push(data);
-    });
+  constructor() { }
+
+  ngOnInit(): void {
   }
 
-  sendMessage() {
-    this.socket.emit('message', this.newMessage);
-    this.newMessage = '';
+  sendMessage(): void {
+    if (this.message.trim() !== '') {
+      const li = document.createElement('li');
+      li.classList.add('list-group-item');
+      li.innerText = this.message;
+      this.messages.nativeElement.appendChild(li);
+      this.message = '';
+    }
   }
 }

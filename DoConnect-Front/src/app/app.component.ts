@@ -99,12 +99,19 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.questionService.searchQuestion(this.searchTerm).subscribe(
       (response) => {
         this.questions = response;
-        this.router.navigate(['/user-search'], { state: { questions: this.questions } });
+        this.router.navigate(['/usersearch'], { state: { questions: this.questions } });
       },
       (error) => {
         console.log(error);
       }
     );
+  }
+  isUserPostPath(): boolean {
+    return this.router.url.startsWith('/userpost');
+  }
+  
+  isAdminPostPath(): boolean {
+    return this.router.url.startsWith('/adminpost');
   }
 
 }

@@ -1,7 +1,23 @@
-<div>
-    <ul>
-      <li *ngFor="let message of messages">{{ message }}</li>
-    </ul>
-    <input type="text" [(ngModel)]="newMessage">
-    <button (click)="sendMessage()">Send</button>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          Chat Room
+        </div>
+        <div class="card-body">
+          <ul class="list-group" #messages>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Enter message..." [(ngModel)]="message">
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="button" (click)="sendMessage()">Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
