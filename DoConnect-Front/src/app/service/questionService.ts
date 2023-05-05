@@ -1,24 +1,23 @@
-
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { UserAuthService } from "./user-auth-service";
 import { Question } from "../model/question";
 import { Observable } from "rxjs";
+import { Answer } from "../model/answer";
 
 @Injectable({
     providedIn:"root"
 })
 export class QuestionService {
-
-    addQuestionUrl:String = "http://localhost:8080/addquestion"
-    updateQuestionUrl:String = "http://localhost:8080/updatequestion"
+    private addQuestionUrl:String = "http://localhost:8080/addquestion"
+    private updateQuestionUrl:String = "http://localhost:8080/updatequestion"
     deleteQuestionUrl:String = "http://localhost:8080/deletequestionbyid"
     private getAllQuestionsUrl:String = "http://localhost:8080/getallquestions"
     getAllQuestionsFalseUrl:String = "http://localhost:8080/getallquestionsfalse"
     getAllQuestionsByTopicUrl:String = "http://localhost:8080/getallquestionsbytopic"
-    getAllQuestionsByIdUrl:String = "http://localhost:8080/getallquestionsbyid"
+    private getQuestionByIdUrl:String = "http://localhost:8080/getquestionbyid"
     private getAllPendingUrl:String="http://localhost:8080/getpendingquestions";
-    getAllApprovedQuestionsUrl:String="http://localhost:8080/getapprovedquestions"
+    private getAllApprovedQuestionsUrl:String="http://localhost:8080/getapprovedquestions"
     private approveQuestionUrl:String="http://localhost:8080/approvequestion";
     private denyQuestionUrl:String="http://localhost:8080/denyquestion";
     private baseUrl = 'http://localhost:8080';
@@ -27,10 +26,10 @@ export class QuestionService {
     constructor(private http:HttpClient,
         private userAuthService: UserAuthService){}
 
-        requestHeader = new HttpHeaders({'No-Auth': 'True',
-        'Content-Type' : 'application/json',
-        'Accept' : '*/*',
-        });
+        // requestHeader = new HttpHeaders({'No-Auth': 'True',
+        // 'Content-Type' : 'application/json',
+        // 'Accept' : '*/*',
+        // });
     AdminId:string='';
     AId:number=0;
 
@@ -48,7 +47,6 @@ export class QuestionService {
 
     denyQuestion(question:any){
         return this.http.put(`${this.denyQuestionUrl}`,question);
-
     }
 
     addQuestion(question: Question) {
@@ -81,10 +79,18 @@ export class QuestionService {
     }
 
     getQuestionById(questionId:number) {
-        return this.http.get<Question>(`${this.getQuestionById}/${questionId}`)
+        return this.http.get<Question>(`${this.getQuestionByIdUrl}/${questionId}`)
     }
 
     getApprovedQuestions() {
         return this.http.get<Question[]>(`${this.getAllApprovedQuestionsUrl}`)
+    }
+
+    addAnswer(questionId: number, answer: Answer): Observable<any> {
+        return this.http.post(`${this.baseUrl}/addanswer/${questionId}`, answer);
+      }
+
+    getAnswersForQuestion(questionId: number): Observable<Answer[]> {
+        return this.http.get<Answer[]>(`${this.baseUrl}/getallanswers/${questionId}`);
     }
 }

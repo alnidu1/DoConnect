@@ -12,15 +12,15 @@ public class EmailService {
 	
 	public void sendEmail(
 		String toEmail,
-		String body,
-		String subject
+		String subject,
+		String body
+		
 		) {
 		SimpleMailMessage message = new SimpleMailMessage();
-		message.setFrom("andygamingtemp@gmail.com");
+		message.setFrom("cogentcapstonetesting@gmail.com");
 		message.setSubject(subject);
 		message.setTo(toEmail);
 		message.setText(body);
-		message.setSubject(subject);
 		
 		mailSender.send(message);
 		

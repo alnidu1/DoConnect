@@ -1,0 +1,48 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+
+Hello
+{{qId}}
+<H1>{{question.title}}</H1>
+
+<div class="answer-list-container">
+    <table class="table table-striped">
+        <thead>
+            <th>ID</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Datetime</th>
+            <th>Status</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let a of answers">
+                <td>{{a.id}}</td>
+                <!-- <td><a [routerLink]="['/questionforum', q.id]" href="/questionforum" (onclick)="loadQuestion(q)">{{q.title}}</a></td> -->
+                <td>{{a.description_answer}}</td>
+                <td><img [src]="a.image_src" alt="My Image">
+                </td>
+                <td>{{a.datetime}}</td>
+                <td>{{a.status}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+
+<div class="new-answer-container">
+    <br>
+    <button mat-raised-button (click)="addNewAnswer()" color="primary">Add New Answer</button>
+    <form *ngIf="addNewAnswerFormVisible" novalidate #newAnswerForm="ngForm" (ngSubmit)="submitNewAnswer(newAnswerForm)" class="needs-validation">
+        <div class="form-group">
+        <label for="description_answer">Answer:</label>
+        <input class="form-control" name="description_answer" id="description_answer" type="text" placeholder="Description" [(ngModel)]="answer.description_answer" required>
+        </div>
+
+        <div class="form-group">
+        <label for="image_src">Image:</label>
+        <input class="form-control" name="image" id="image" type="text" placeholder="Image Source Text" [(ngModel)]="answer.image_src" required>
+        </div>
+
+        <button mat-raised-button type="submit" color="primary">Submit Answer</button>
+    </form>
+</div>
