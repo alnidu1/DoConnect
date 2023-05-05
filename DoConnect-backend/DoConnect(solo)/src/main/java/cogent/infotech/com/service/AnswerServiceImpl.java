@@ -16,6 +16,8 @@ public class AnswerServiceImpl implements AnswerService{
 	@Autowired
 	private AnswerRepository answerRepository;
 
+	@Autowired
+	private EmailService emailService;
 	
 	@Override
 	public void updateAnswerStatus(int id, String newStatus, int userid) {
@@ -34,7 +36,8 @@ public class AnswerServiceImpl implements AnswerService{
 	
 	@Override
 	public void addAnswer(Answer answer,int id) {
-		
+        emailService.sendEmail("cogentcapstonetesting@gmail.com", "new answer waiting to be approve", "answer body");
+
 		answerRepository.save(answer);
 	}
 	

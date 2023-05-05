@@ -75,12 +75,17 @@
                             <input class="form-control" name="image_src" id="image_src" type="text" placeholder="Image"
                                 [(ngModel)]="newAnswerForm.value.image_src" required>
                         </div>
-                        <div class="form-group">
-                            <input class="form-control" name="q.id" id="q.id" type="text" [(ngModel)]="q.id">
-                        </div>
+                       
                         <button mat-raised-button type="submit" color="primary">Submit Answer</button>
                     </form>
-                    <button mat-raised-button (click)="showAnswers(q)">View Answers</button>
+                    <button mat-raised-button  (click)="showAnswers(q)">View Answers</button>
+                    <form *ngIf="showAnswer" >
+                        <ul *ngFor="let a of answers">
+                            <li> {{a.id}} </li>
+                            <li> {{a.description_answer}}</li>
+                            
+                         </ul>
+                    </form>
                 </td>
             </tr>
         </tbody>

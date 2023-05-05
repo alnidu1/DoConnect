@@ -74,11 +74,15 @@ export class UserPostComponent implements OnInit {
 
     this.addNewAnswerFormVisible = !this.addNewAnswerFormVisible
   }
+  showAnswer=false;
   showAnswers(question: Question) {
+    this.showAnswer=!this.showAnswer;
     this.selectedQuestion = question;
+    console.log(question.id);
     this.questionService.getAnswersForQuestion(question.id).subscribe((answers: Answer[]) => {
       this.answers = answers;
     });
+    
   }
 
   userid='';
