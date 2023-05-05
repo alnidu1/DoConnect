@@ -24,6 +24,7 @@ import { Socket } from 'socket.io-client';
 import { ChatComponent } from './chat/chat.component';
 import { MatButtonModule } from '@angular/material/button';
 import { UserSearchComponent } from './user-search/user-search.component';
+import { ChatlistComponent } from './chatlist/chatlist.component';
 import { DatePipe } from '@angular/common';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 
@@ -39,6 +40,7 @@ import { SearchbarComponent } from './searchbar/searchbar.component';
     AdminPostComponent,
     ChatComponent,
     UserSearchComponent,
+    ChatlistComponent,
     SearchbarComponent
   ],
   imports: [

@@ -17,6 +17,15 @@ public class Chat {
 	private String message;
 	private String datetime;
 	
+	public Chat() {
+		
+	}
+	public Chat(String fromuser, String touser, String message, String datetime) {
+		this.fromuser = fromuser;
+		this.touser = touser;
+		this.message = message;
+		this.datetime = datetime;
+	}
 	public int getId() {
 		return id;
 	}
@@ -47,5 +56,6 @@ public class Chat {
 	public void setDatetime(String datetime) {
 		this.datetime = datetime;
 	}
+	
 	
 }

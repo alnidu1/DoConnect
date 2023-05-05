@@ -1,0 +1,16 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+
+<table>
+    <thead>
+        <th>Id</th>
+        <th>Name</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let u of users">
+            <td *ngIf="u.username != this.fromuser">{{u.id}}</td>
+            <td *ngIf="u.username != this.fromuser">{{u.name}}</td>
+            <button *ngIf="u.username != this.fromuser" mat-raised-button (click)="openChat(u.name)" color="primary">Chat Now</button>
+        </tr>
+    </tbody>
+</table>
