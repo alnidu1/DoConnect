@@ -3,10 +3,13 @@ import {User} from './user'
 export class Answer {
     constructor(
         public id: number,
-        public description_answer: String,
-        public image_src: String,
-        public datetime: String,
-        public status: String,
-        public qcreated_by: User
+        public description_answer: string,
+        public image_src: string,
+        public status: string,
+        public datetime: string | null,
+        public question_id:number,
+        public qapproved_by: number,
+        public qcreated_by: number,
+
     ){}
 }

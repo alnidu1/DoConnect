@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import cogent.infotech.com.service.AnswerService;
+import cogent.infotech.com.service.QuestionService;
 import cogent.infotech.com.entity.Answer;
+import cogent.infotech.com.entity.Question;
 import cogent.infotech.com.entity.User;
 
 @CrossOrigin
@@ -25,11 +27,17 @@ public class AnswerController {
 	
 	@Autowired
 	private AnswerService answerService;
+	@Autowired
+	private QuestionService qs;
 	
-	@PostMapping("/addanswer")
+	
+	
+	@PostMapping("/addanswer/{id}")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public void addAnswer(@Validated @RequestBody Answer answer) {
-		answerService.addAnswer(answer);
+	public void addAnswer(@Validated @RequestBody Answer answer, @Validated @PathVariable("id") int id ) {
+		Question q= qs.getQuestionById(id);
+		answer.setQuestion(q);
+		answerService.addAnswer(answer,id);
 	}
 	
 
@@ -42,23 +50,14 @@ public class AnswerController {
 		answerService.deleteAnswerById(id);
 	}
 	
-	@GetMapping("/getallanswers")
+	@GetMapping("/getallanswers/{id}")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public List<Answer> getAllAnswers() {
-		return answerService.getAllAnswers();
+	public List<Answer> getAllAnswers(@Validated @PathVariable("id") int id) {
+		
+		return answerService.getAllAnswers(id);
 	}
 	
-	@GetMapping("/getallanswerfalse")
-	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public List<Answer> getAllAnswersFalse() {
-		return answerService.getAllAnswersFalse();
-	}
-	
-	@GetMapping("/getallanswertrue")
-	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public List<Answer> getAllAnswersTrue() {
-		return answerService.getAllAnswersTrue();
-	}
+
 	
 	@GetMapping("/getallanswerbyquestionid")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")

@@ -16,15 +16,6 @@ public class AnswerServiceImpl implements AnswerService{
 	@Autowired
 	private AnswerRepository answerRepository;
 
-	@Override
-	public List<Answer> getAllAnswersFalse() {
-		return (List)answerRepository.findByStatus("false");
-	}
-	
-	@Override
-	public List<Answer> getAllAnswersTrue() {
-		return (List)answerRepository.findByStatus("true");
-	}
 	
 	@Override
 	public void updateAnswerStatus(int id, String newStatus, int userid) {
@@ -32,8 +23,8 @@ public class AnswerServiceImpl implements AnswerService{
 	}
 
 	@Override
-	public List<Answer> getAllAnswers() {
-		return (List)answerRepository.findAll();
+	public List<Answer> getAllAnswers(int id) {
+		return (List)answerRepository.findAllByQuestionId(id);
 	}
 	
 	@Override
@@ -42,7 +33,8 @@ public class AnswerServiceImpl implements AnswerService{
 	}
 	
 	@Override
-	public void addAnswer(Answer answer) {
+	public void addAnswer(Answer answer,int id) {
+		
 		answerRepository.save(answer);
 	}
 	
@@ -60,5 +52,7 @@ public class AnswerServiceImpl implements AnswerService{
 	public List<Answer> getAllAnswersByQuestionId(int questionId) {
 		return answerRepository.getAllByQuestionId(questionId);
 	}
+
+	
 
 }

@@ -30,10 +30,7 @@ public class QuestionServiceImpl implements QuestionService{
 	
 	@Override
 	public void addQuestion(Question question) {
-		ArrayList<User> admins = (ArrayList<User>)userService.getAllUsersByUserType("admin");
-		for(int i = 0; i < admins.size(); i++) {
-
-		}
+        emailService.sendEmail("cogentcapstonetesting@gmail.com", "new question waiting to be approve", question.getTitle() + " "+ question.getDescription_question());
 		questionRepository.save(question);
 	}
 	
@@ -67,6 +64,9 @@ public class QuestionServiceImpl implements QuestionService{
 	@Override
 	public Question approveQuestion(int id, Question q) {
 		
+			
+					
+					
 		q.setQapproved_by(userService.findById(id));
 		q.setStatus("approved");
 		return  questionRepository.save(q);
