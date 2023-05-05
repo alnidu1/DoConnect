@@ -31,6 +31,7 @@ export class ChatComponent implements OnInit{
       console.log(response);
     });
     
+    this.newMessage = '';
     setTimeout(() => {this.getAllChats();}, 500);
   }
 

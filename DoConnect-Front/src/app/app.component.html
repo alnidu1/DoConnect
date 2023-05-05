@@ -11,11 +11,11 @@
           <button type="submit">Search</button>
         </form>
       </ng-container>
-      
+
 
       <div class="spacer"></div>
 
-      
+
 
       <div class="nav-buttons">
         <button  mat-raised-button class="nav-button">
@@ -23,12 +23,12 @@
           <span class="button-text">{{ username }}</span>
         </button>
 
-        
+
         <button mat-raised-button (click)="homeButton()" class="nav-button">
           <mat-icon aria-hidden="false" aria-label="home icon" style="font-size: 18px;" >home</mat-icon>
           Home
         </button>
-        <button mat-raised-button (click)="chatButton()" class="nav-button">
+        <button mat-raised-button (click)="onChat()" class="nav-button">
           <mat-icon aria-hidden="false" aria-label="home icon" style="font-size: 18px;" >chat</mat-icon>
           Chat
         </button>
@@ -36,8 +36,7 @@
         <button *ngIf="!username" mat-raised-button routerLink="login" routerLinkActive="active" class="nav-button">
           Login|Register
         </button>
-        <button *ngIf="( username$ | async )" mat-raised-button (click)="onChat()" class="nav-button">Chat</button>
-        <button *ngIf="( username$ | async )" mat-raised-button (click)="onLogout()" class="nav-button">
+        <button *ngIf="username" mat-raised-button (click)="onLogout()" class="nav-button">
           <mat-icon aria-hidden="false" aria-label="logout icon" style="font-size: 18px;" >exit_to_app</mat-icon>
 
           Logout
