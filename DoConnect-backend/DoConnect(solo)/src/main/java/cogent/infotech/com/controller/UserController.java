@@ -54,11 +54,11 @@ public class UserController {
 		return userService.getAllUsers();
 	}
 	
-	@GetMapping("/getallusersbyid")
-	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public Optional<User> getAllUsersById(@Validated @RequestBody int id) {
-		return userService.getAllUsersById(id);
-	}
+//	@GetMapping("/getallusersbyid")
+//	@PreAuthorize("hasRole('user') || hasRole('admin')")
+//	public Optional<User> getAllUsersById(@Validated @RequestBody int id) {
+//		return userService.getAllUsersById(id);
+//	}
 	
 	@GetMapping("/getuserbyid/{id}")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")

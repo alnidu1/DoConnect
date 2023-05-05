@@ -61,7 +61,7 @@ public class QuestionController {
 		return questionService.getAllQuestionsByTopic(topic);
 	}
 	
-	@GetMapping("/getallquestionsbyid/{id}")
+	@GetMapping("/getquestionbyid/{id}")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
 	public Question getQuestionById(@Validated @PathVariable("id") int id) {
 		return questionService.getQuestionById(id);
@@ -85,14 +85,13 @@ public class QuestionController {
 								@Validated @RequestBody Question question) {
 		questionService.approveQuestion(adminId, question);
 	}
-	
+
 	@PutMapping("/denyquestion")
-	@PreAuthorize("hasRole('user') || hasRole('admin')")
-    public Question denyQuestion( @Validated @RequestBody Question q) {
-		
-        return questionService.denyQuestion( q);
-    }
-	
+	@PreAuthorize("hasRole('admin')")
+	public void denyQuestion(@Validated @RequestBody Question question) {
+		questionService.denyQuestion(question);
+	}
+
 	@GetMapping("/searchquestions/{s}")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
 	public List<Question> searchQuestion(@Validated @PathVariable("s") String s){
@@ -100,6 +99,10 @@ public class QuestionController {
 		return questionService.searchQuestion(s);
 	}
 
-
+	@GetMapping("/getallanswers/{question_id}")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
+	public List<Answer> getAllAnswersForQuestion(@Validated @PathVariable("question_id") int question_id) {
+		return questionService.getAllAnswersForQuestion(question_id);
+	}
 }
 

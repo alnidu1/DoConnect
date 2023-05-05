@@ -3,7 +3,7 @@
 
 
 <H1>Admin Page</H1>
-<div class="user-posts-container">
+<div class="pending-questions-container">
     <h2>List of Questions</h2>
     <table class="table table-striped">
         <thead>
@@ -17,7 +17,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let q of questions">
-    
+
                 <td>{{q.id}}</td>
                 <td>{{q.title}}</td>
                 <td>{{q.topic}}</td>
@@ -26,11 +26,41 @@
                 <td>{{q.datetime}}</td>
                 <td>{{q.status}}</td>
                 <td>
-                    <button mat-raised-button (click)="approvePost(q)"	color="primary">Approve</button>
-                    
-                    <button mat-raised-button	(click)="denyPost(q)"color="warn">Deny</button></td>
+                    <button mat-raised-button (click)="approveQuestion(q)"	color="primary">Approve</button>
+
+                    <button mat-raised-button	(click)="denyQuestion(q)"color="warn">Deny</button></td>
             </tr>
 
+        </tbody>
+    </table>
+</div>
+
+<br>
+
+<div class="pending-answers-container">
+    <h2>List of Answers</h2>
+    <table class="table table-striped">
+        <thead>
+            <th>ID</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Datetime</th>
+            <th>Status</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let a of answers">
+
+                <td>{{a.id}}</td>
+                <td>{{a.description_answer}}</td>
+                <td><img [src]="a.image_src" alt="My Image"></td>
+                <td>{{a.datetime}}</td>
+                <td>{{a.status}}</td>
+                <td>
+                    <button mat-raised-button (click)="approveAnswer(a)" color="primary">Approve</button>
+
+                    <button mat-raised-button (click)="denyAnswer(a)" color="warn">Deny</button>
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>
