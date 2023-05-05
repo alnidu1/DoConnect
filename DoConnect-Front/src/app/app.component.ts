@@ -69,6 +69,10 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   }
 
+  onChat() {
+    this.router.navigate(['/chatlist']);
+  }
+
   homeButton(){
     if(this.username==''){
       this.router.navigate(['/home']);
@@ -82,15 +86,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     }
   }
-  chatButton(){
-    if(this.username==''){
-      this.router.navigate(['/home']);
-    }
-    else{
-      this.router.navigate(['/chat']);
-
-    }
-  }
+  
   searchText: string = '';
 
   searchTerm: string='';

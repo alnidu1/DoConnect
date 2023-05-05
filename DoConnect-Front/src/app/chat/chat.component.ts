@@ -1,6 +1,10 @@
-import { Component, ElementRef } from '@angular/core';
-import { io } from 'socket.io-client'; 
-import { ViewChild} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { Chat } from '../model/chat';
+import { ChatService } from '../service/chat.service';
+import { UserAuthService } from '../service/user-auth-service';
+import { Router } from '@angular/router';
+import { SharedChatService } from '../service/shared-chat.service';
+
 
 
 @Component({
@@ -8,22 +12,33 @@ import { ViewChild} from '@angular/core';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent {
-  message: string = '';
-  @ViewChild('messages', {static: true}) messages: ElementRef= new ElementRef("");
-
-  constructor() { }
-
+export class ChatComponent implements OnInit{
+  chats: Chat[] = [];
+  newMessage: string = '';
+  fromuser: string = this.userAuthService.getUserName();
+  touser: string = '';
+  today = new Date();
+  datetime:string = this.today.toLocaleDateString();
   ngOnInit(): void {
+    this.sharedChatService.currentString.subscribe(touser => this.touser = touser);
+    this.getAllChats();
   }
 
-  sendMessage(): void {
-    if (this.message.trim() !== '') {
-      const li = document.createElement('li');
-      li.classList.add('list-group-item');
-      li.innerText = this.message;
-      this.messages.nativeElement.appendChild(li);
-      this.message = '';
-    }
+  constructor(private chatService:ChatService, router:Router, private userAuthService:UserAuthService, private sharedChatService:SharedChatService){}
+  sendChat(message:string){
+    let chat: Chat = new Chat(this.fromuser, this.touser, message, this.datetime)
+    this.chatService.postChat(chat).subscribe(response => {
+      console.log(response);
+    });
+    
+    this.newMessage = '';
+    setTimeout(() => {this.getAllChats();}, 500);
   }
+
+  getAllChats(){
+    this.chatService.getAllMessages(this.fromuser, this.touser).subscribe((data: Chat[])=>{
+      this.chats = data
+    });
+  }
+
 }
