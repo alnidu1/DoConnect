@@ -6,14 +6,16 @@ import java.util.Optional;
 import cogent.infotech.com.entity.*;
 
 public interface AnswerService {
-	
-	public List<Answer> getAllAnswers(int id);
 
-	public List<Answer> getAllAnswersById(int id);
+	public List<Answer> getAllAnswers();
+	public Answer getAnswerById(int id);
 	void updateAnswerStatus(int id, String newStatus, int userid);
-	public void addAnswer(Answer answer, int id);
+	public void addAnswer(Answer answer);
 	public void updateAnswer(Answer answer);
 	public void deleteAnswerById(int id);
-	public List<Answer> getAllAnswersByQuestionId(int questionid);
-
+	public List<Answer> getAllAnswersByQuestionId(int questionId);
+	public List<Answer> getAllPendingAnswers();
+	public List<Answer> getAllApprovedAnswers(int question_id);
+	public void approveAnswer(int adminId, Answer answer);
+	public void denyAnswer(Answer answer);
 }

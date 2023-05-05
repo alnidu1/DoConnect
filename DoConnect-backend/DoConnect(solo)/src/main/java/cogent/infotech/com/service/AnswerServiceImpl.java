@@ -17,6 +17,9 @@ public class AnswerServiceImpl implements AnswerService{
 	private AnswerRepository answerRepository;
 
 	@Autowired
+	private UserService userService;
+
+	@Autowired
 	private EmailService emailService;
 	
 	@Override
@@ -24,18 +27,22 @@ public class AnswerServiceImpl implements AnswerService{
 		answerRepository.updateAnswerStatus(id , newStatus, userid);
 	}
 
-	@Override
 	public List<Answer> getAllAnswers(int id) {
 		return (List)answerRepository.findAllByQuestionId(id);
 	}
-	
+
 	@Override
-	public List<Answer> getAllAnswersById(int id) {
-		return (List)answerRepository.findById(id);
+	public List<Answer> getAllAnswers() {
+		return answerRepository.findAll();
+	}
+
+	@Override
+	public Answer getAnswerById(int id) {
+		return answerRepository.findById(id);
 	}
 	
 	@Override
-	public void addAnswer(Answer answer,int id) {
+	public void addAnswer(Answer answer) {
         emailService.sendEmail("cogentcapstonetesting@gmail.com", "new answer waiting to be approve", "answer body");
 
 		answerRepository.save(answer);
@@ -53,9 +60,31 @@ public class AnswerServiceImpl implements AnswerService{
 	
 	@Override
 	public List<Answer> getAllAnswersByQuestionId(int questionId) {
-		return answerRepository.getAllByQuestionId(questionId);
+		return answerRepository.getAllByQuestionId(questionId, "pending");
 	}
 
-	
+	@Override
+	public List<Answer> getAllPendingAnswers() {
+		return answerRepository.findAllPending();
+	}
 
+	@Override
+	public List<Answer> getAllApprovedAnswers(int question_id) {
+		return answerRepository.findAllApproved(question_id);
+	}
+
+	@Override
+	public void approveAnswer(int adminId, Answer answer) {
+		Answer answerToApprove = answerRepository.findById(answer.getId());
+		answerToApprove.setStatus("approved");
+		answerToApprove.setAapproved_by(userService.getUserById(adminId));
+		answerRepository.save(answerToApprove);
+	}
+
+	@Override
+	public void denyAnswer(Answer answer) {
+		Answer answerToApprove = answerRepository.findById(answer.getId());
+		answerToApprove.setStatus("denied");
+		answerRepository.save(answerToApprove);
+	}
 }
