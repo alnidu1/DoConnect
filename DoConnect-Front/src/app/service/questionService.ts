@@ -4,12 +4,12 @@ import { Injectable } from "@angular/core";
 import { UserAuthService } from "./user-auth-service";
 import { Question } from "../model/question";
 import { Observable } from "rxjs";
+import { Answer } from "../model/answer";
 
 @Injectable({
     providedIn:"root"
 })
 export class QuestionService {
-
     addQuestionUrl:String = "http://localhost:8080/addquestion"
     updateQuestionUrl:String = "http://localhost:8080/updatequestion"
     deleteQuestionUrl:String = "http://localhost:8080/deletequestionbyid"
@@ -87,4 +87,12 @@ export class QuestionService {
     getApprovedQuestions() {
         return this.http.get<Question[]>(`${this.getAllApprovedQuestionsUrl}`)
     }
+
+    addAnswer(questionId: number, answer: Answer): Observable<any> {
+        return this.http.post(`${this.baseUrl}/addanswer/${questionId}`, answer);
+      }
+    
+      getAnswersForQuestion(questionId: number): Observable<Answer[]> {
+        return this.http.get<Answer[]>(`${this.baseUrl}/getallanswers/${questionId}`);
+      }
 }

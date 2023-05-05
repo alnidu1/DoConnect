@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
 export class AdminPostComponent implements OnInit, AfterViewInit{
 
   questions:Question[]=[]
-  question:Question=new Question(0, "", "", "", "", "", "", 0, 0)
+  question:Question=new Question(0, "", "", "", "", "", "", 0, 0, [])
   
   ngOnInit(): void {
     

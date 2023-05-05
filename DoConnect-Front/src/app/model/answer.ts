@@ -5,8 +5,11 @@ export class Answer {
         public id: number,
         public description_answer: String,
         public image_src: String,
-        public datetime: String,
-        public status: String,
-        public qcreated_by: User
+        public datetime: string | null,
+        public status: string,
+        public question_id:number,
+        public qcreated_by: number,
+        public qapproved_by: number,
+
     ){}
 }
