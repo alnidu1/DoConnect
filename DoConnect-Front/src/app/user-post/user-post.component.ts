@@ -7,6 +7,8 @@ import { DatePipe } from '@angular/common';
 import { Subject } from 'rxjs';
 import { Answer } from '../model/answer';
 import { UserAuthService } from '../service/user-auth-service';
+import { UserService } from '../service/user.service';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-user-post',
@@ -14,7 +16,7 @@ import { UserAuthService } from '../service/user-auth-service';
   styleUrls: ['./user-post.component.css']
 })
 export class UserPostComponent implements OnInit {
-
+  user:User=new User(0,'','','','','','');
   questions:Question[]=[]
   question:Question=new Question(0, "", "", "", "", "", "", 0, 0,[])
   addNewQuestionFormVisible:boolean = false
@@ -25,7 +27,9 @@ export class UserPostComponent implements OnInit {
     this.loadPosts();
   }
 
-  constructor(private questionService:QuestionService, router:Router, private datePipe: DatePipe, private authservice: UserAuthService) {}
+  constructor(private questionService:QuestionService, router:Router, private datePipe: DatePipe, private authservice: UserAuthService,
+    private userService:UserService
+    ) {}
 
   loadPosts() {
      //this.questionService.getAllQuestions().subscribe((data: Question[])=>{
@@ -53,6 +57,13 @@ export class UserPostComponent implements OnInit {
     alert("Your question has been submitted and is now pending approval.")
   }
 
+  getUserbyID(id:number){
+    this.userService.getUserbyId(id).subscribe((data:User)=>
+    this.user=data
+    );
+    
+  }
+
   selectedQuestion: Question=new Question(0, "", "", "", "", "", "", 0, 0,[]);
   answers: Answer[] = [];
   answer: Answer = new Answer(0, '', '', '', '',0, 0, 0);
@@ -70,12 +81,14 @@ export class UserPostComponent implements OnInit {
     });
   }
 
-  createAnswer(answerForm: NgForm) {
-    this.answer.question_id = answerForm.value.question_id;
+  userid='';
+  createAnswer(q:Question, answerForm: NgForm) {
+    this.userid=this.authservice.getUserId();
+    this.answer.qcreated_by = parseInt(this.userid);
+    this.answer.question_id = q.id;
     this.answer.description_answer = answerForm.value.description_answer;
     this.answer.datetime = this.datePipe.transform(new Date(), 'MM/dd/yyyy h:mm:ss');
     this.answer.status = 'pending';
-    this.answer.qcreated_by = parseInt(this.authservice.getUserId());
   
     this.questionService.addAnswer(this.answer.question_id, this.answer).subscribe(() => {
       this.showAnswers(this.selectedQuestion);

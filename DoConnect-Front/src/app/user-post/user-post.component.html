@@ -5,25 +5,30 @@
 <div class="new-question-container">
     <br>
     <button mat-raised-button (click)="addNewQuestion()" color="primary">Add New Question</button>
-    <form *ngIf="addNewQuestionFormVisible" novalidate #newQuestionForm="ngForm" (ngSubmit)="submitNewQuestion(newQuestionForm)" class="needs-validation">
+    <form *ngIf="addNewQuestionFormVisible" novalidate #newQuestionForm="ngForm"
+        (ngSubmit)="submitNewQuestion(newQuestionForm)" class="needs-validation">
         <div class="form-group">
             <label for="title">Title:</label>
-            <input class="form-control" name="title" id="title" type="text" placeholder="Title" [(ngModel)]="question.title" required>
+            <input class="form-control" name="title" id="title" type="text" placeholder="Title"
+                [(ngModel)]="question.title" required>
         </div>
 
         <div class="form-group">
-        <label for="topic">Topic:</label>
-        <input class="form-control" name="topic" id="topic" type="text" placeholder="Topic" [(ngModel)]="question.topic" required>
+            <label for="topic">Topic:</label>
+            <input class="form-control" name="topic" id="topic" type="text" placeholder="Topic"
+                [(ngModel)]="question.topic" required>
         </div>
 
         <div class="form-group">
-        <label for="description_question">Description:</label>
-        <input class="form-control" name="description_question" id="description_question" type="text" placeholder="Description" [(ngModel)]="question.description_question" required>
+            <label for="description_question">Description:</label>
+            <input class="form-control" name="description_question" id="description_question" type="text"
+                placeholder="Description" [(ngModel)]="question.description_question" required>
         </div>
 
         <div class="form-group">
-        <label for="image_src">Image:</label>
-        <input class="form-control" name="image" id="image" type="text" placeholder="Image Source Text" [(ngModel)]="question.image_src" required>
+            <label for="image_src">Image:</label>
+            <input class="form-control" name="image" id="image" type="text" placeholder="Image Source Text"
+                [(ngModel)]="question.image_src" required>
         </div>
 
         <button mat-raised-button type="submit" color="primary">Submit Question</button>
@@ -34,33 +39,50 @@
 <div class="question-list-container">
     <h1>List of Questions</h1>
     <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Title</th>
-          <th>Topic</th>
-          <th>Description</th>
-          <th>Image</th>
-          <th>Datetime</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let q of questions">
-          <td>{{q.id}}</td>
-          <td>{{q.title}}</td>
-          <td>{{q.topic}}</td>
-          <td>{{q.description_question}}</td>
-          <td><img [src]="q.image_src" alt="My Image"></td>
-          <td>{{q.datetime}}</td>
-          <td>{{q.status}}</td>
-          <td>
-           
-            
-            <button mat-raised-button (click)="showAnswers(q)">View Answers</button>
-          </td>
-        </tr>
-      </tbody>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Topic</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Datetime</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let q of questions">
+                <td>{{q.id}}</td>
+                <td>{{q.title}}</td>
+                <td>{{q.topic}}</td>
+                <td>{{q.description_question}}</td>
+                <td><img [src]="q.image_src" alt="My Image"></td>
+                <td>{{q.datetime}}</td>
+                <td>{{q.status}}</td>
+                <td>
+
+                    <button mat-raised-button (click)="addNewAnswer()">Add Answer</button>
+                    <form *ngIf="addNewAnswerFormVisible" novalidate #newAnswerForm="ngForm"
+                        (ngSubmit)="createAnswer(q, newAnswerForm)" class="needs-validation">
+                        <div class="form-group">
+                            <label for="description_answer">Answer:</label>
+                            <input class="form-control" name="description_answer" id="description_answer" type="text"
+                                placeholder="Answer" [(ngModel)]="newAnswerForm.value.description_answer" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="image_src">Image:</label>
+                            <input class="form-control" name="image_src" id="image_src" type="text" placeholder="Image"
+                                [(ngModel)]="newAnswerForm.value.image_src" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="q.id" id="q.id" type="text" [(ngModel)]="q.id">
+                        </div>
+                        <button mat-raised-button type="submit" color="primary">Submit Answer</button>
+                    </form>
+                    <button mat-raised-button (click)="showAnswers(q)">View Answers</button>
+                </td>
+            </tr>
+        </tbody>
     </table>
-  </div>
+</div>

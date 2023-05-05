@@ -27,6 +27,7 @@ import { UserSearchComponent } from './user-search/user-search.component';
 import { ChatlistComponent } from './chatlist/chatlist.component';
 import { DatePipe } from '@angular/common';
 import { SearchbarComponent } from './searchbar/searchbar.component';
+import { ImageuploadComponent } from './imageupload/imageupload.component';
 
 
 
@@ -41,7 +42,8 @@ import { SearchbarComponent } from './searchbar/searchbar.component';
     ChatComponent,
     UserSearchComponent,
     ChatlistComponent,
-    SearchbarComponent
+    SearchbarComponent,
+    ImageuploadComponent
   ],
   imports: [
     BrowserModule,

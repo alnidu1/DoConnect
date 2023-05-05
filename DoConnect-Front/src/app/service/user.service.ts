@@ -11,10 +11,10 @@ import { UserAuthService } from "./user-auth-service";
 export class UserService{
 
   
-    private searchUserUrl="http://localhost:8080/searchquestions";
     private signupUserUrl = "http://localhost:8080/adduser";
     private authenticateUrl = "http://localhost:8080/authenticate";
     private getAllUsersUrl = "http://localhost:8080/getallusers";
+    private getUserbyIdUrl="http://localhost:8080/getuserbyid";
 
 
     constructor(private http:HttpClient,
@@ -44,6 +44,10 @@ export class UserService{
         return this.http.get<User[]>(`${this.getAllUsersUrl}`,{
             headers: this.requestHeader,
         });
+    }
+
+    getUserbyId(userId: number):Observable<User>{
+        return this.http.get<User>(`${this.getUserbyId}/${userId}`)
     }
 
 
