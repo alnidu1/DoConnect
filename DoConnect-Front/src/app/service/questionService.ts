@@ -50,8 +50,7 @@ export class QuestionService {
     }
 
     addQuestion(question: Question) {
-        question.qcreated_id = Number(this.userAuthService.getUserId())
-        return this.http.post(`${this.addQuestionUrl}`, question);
+        return this.http.post(`${this.addQuestionUrl}/${Number(this.userAuthService.getUserId())}`, question);
     }
 
     updateQuestion(questionId:number, questionStatus:String) {
@@ -92,5 +91,9 @@ export class QuestionService {
 
     getAnswersForQuestion(questionId: number): Observable<Answer[]> {
         return this.http.get<Answer[]>(`${this.baseUrl}/getallanswers/${questionId}`);
+    }
+
+    getQuestionUserByID(questionId:number) {
+        return this.http.get<Question>(`${this.getQuestionByIdUrl}/${questionId}`)
     }
 }

@@ -8,6 +8,7 @@ import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { UserAuthService } from '../service/user-auth-service';
 import { UserService } from '../service/user.service';
+import { User } from '../model/user';
 
 @Component({
     selector:'app-question-forum',
@@ -18,7 +19,7 @@ export class QuestionForumComponent implements OnInit {
     public qId: any = 0
     public answer: Answer = new Answer(0, "", "", "", "", 0, 0, 0);
     public answers: Answer[] = []
-    public question: any = new Question(0, "", "", "", "", "", "", 0, 0, this.answers);
+    question:Question=new Question(0, "", "", "", "", "", "", new User(0,'','','','','',''), new User(0,'','','','','',''), this.answers)
     
     
     addNewAnswerFormVisible = false

@@ -18,7 +18,7 @@ import { AnswerService } from '../service/answerService';
 export class UserPostComponent implements OnInit {
   user:User=new User(0,'','','','','','');
   questions:Question[]=[]
-  question:Question=new Question(0, "", "", "", "", "", "", 0, 0,[])
+  question:Question=new Question(0, "", "", "", "", "", "", new User(0,'','','','','',''), new User(0,'','','','','',''), [])
   addNewQuestionFormVisible:boolean = false
 
   private readonly postAction$ = new Subject()
@@ -42,6 +42,10 @@ export class UserPostComponent implements OnInit {
   }
 
   submitNewQuestion(newQuestionForm: NgForm) {
+    console.log(newQuestionForm.value.title);
+
+    console.log(newQuestionForm.value.image_src);
+
     newQuestionForm.value.datetime = this.datePipe.transform((new Date), 'MM/dd/yyyy h:mm:ss')
     newQuestionForm.value.status = "pending"
 
@@ -59,7 +63,8 @@ export class UserPostComponent implements OnInit {
 
   }
 
-  selectedQuestion: Question=new Question(0, "", "", "", "", "", "", 0, 0,[]);
+  selectedQuestion: Question=  new Question(0, "", "", "", "", "", "", new User(0,'','','','','',''), new User(0,'','','','','',''), [])
+
   answers: Answer[] = [];
   answer: Answer = new Answer(0, '', '', '', '',0, 0, 0);
 
@@ -85,6 +90,7 @@ export class UserPostComponent implements OnInit {
     this.answer.qcreated_by = parseInt(this.userid);
     this.answer.question_id = q.id;
     this.answer.description_answer = answerForm.value.description_answer;
+    this.answer.image_src= answerForm.value.image_src;
     this.answer.datetime = this.datePipe.transform(new Date(), 'MM/dd/yyyy h:mm:ss');
     this.answer.status = 'pending';
 

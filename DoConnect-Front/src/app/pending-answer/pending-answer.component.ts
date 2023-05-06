@@ -14,15 +14,15 @@ import { Answer } from '../model/answer';
 })
 export class PendingAnswerComponent implements OnInit{
   questions:Question[]=[]
-  question:Question=new Question(0, "", "", "", "", "", "", 0, 0, [])
   answers:Answer[]=[]
+  username:string="";
 
   ngOnInit(): void {
 
-    /*this.questionService.getAllQuestions().subscribe((data: Question[])=>{
-      this.questions=data
-    });*/
+    
     this.loadPosts();
+
+    
 
   }
   ngAfterViewInit() {
