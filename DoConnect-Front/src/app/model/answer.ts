@@ -8,7 +8,7 @@ export class Answer {
         public status: string,
         public datetime: string | null,
         public question_id:number,
-        public aapproved_by: number,
-        public acreated_by: number
+        public qapproved_by: number,
+        public qcreated_by: number
     ){}
 }
