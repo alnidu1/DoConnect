@@ -15,7 +15,8 @@
             <mat-icon>{{q.topic}}</mat-icon>
           </div>
           <mat-card-title>{{q.title}}</mat-card-title>
-          <mat-card-subtitle>{{q.topic}}</mat-card-subtitle>
+          <mat-card-subtitle>{{q.qcreated_by.username}} </mat-card-subtitle>
+          
         </mat-card-header>
   
         <img mat-card-image [src]="q.image_src" alt="My Image">

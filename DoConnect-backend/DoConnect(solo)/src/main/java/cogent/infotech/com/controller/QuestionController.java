@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import cogent.infotech.com.service.QuestionServiceImpl;
-import lombok.Data;
+import cogent.infotech.com.service.UserServiceImpl;
 import cogent.infotech.com.entity.Answer;
 import cogent.infotech.com.entity.Question;
 import cogent.infotech.com.entity.User;
@@ -31,10 +31,14 @@ public class QuestionController {
 	
 	@Autowired
 	private QuestionServiceImpl questionService;
+	@Autowired 
+	private UserServiceImpl userService;
 	
-	@PostMapping("/addquestion")
+	@PostMapping("/addquestion/{id}")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public void addQuestion(@Validated @RequestBody Question question) {
+	public void addQuestion(@Validated @RequestBody Question question, @Validated @PathVariable("id") int id ) {
+		System.out.println("Inside addQuestion " + id);
+		question.setQcreated_by(userService.findById(id));
 		questionService.addQuestion(question);
 	}
 	
@@ -70,6 +74,7 @@ public class QuestionController {
 	@GetMapping("/getpendingquestions")
 	@PreAuthorize("hasRole('admin')")
 	public List<Question> getAllPendingQuestions() {
+	
 		return questionService.getAllPendingQuestions();
 	}
 
