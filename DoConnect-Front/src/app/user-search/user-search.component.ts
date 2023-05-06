@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserSearchComponent implements OnInit {
   questions: Question[]=[];
+  count:number=0;
 
   constructor(private route: ActivatedRoute) {}
 
@@ -19,6 +20,10 @@ export class UserSearchComponent implements OnInit {
     this.questions = history.state.questions;
   }
 
+  counting(){
+    this.count=this.count+1;
+  }
+  
   
 }
   

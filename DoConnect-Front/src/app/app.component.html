@@ -7,8 +7,16 @@
 
       <ng-container *ngIf="isUserPostPath() || isAdminPostPath()">
         <form (ngSubmit)="searchQuestion()">
-          <input type="text" name="searchTerm" [(ngModel)]="searchTerm">
-          <button type="submit">Search</button>
+
+          <div class="youtube-search-bar">
+            <div class="search-container">
+              <div class="search-icon-container" >
+                <i class="fa fa-search"><mat-icon  style="padding-top: 4px;">search</mat-icon></i>
+              </div>
+              <input type="text" placeholder="Search" class="search-input" style="font-size: x-large; line-height: .5;" >
+              <button class="search-button"><mat-icon>search</mat-icon></button>
+            </div>
+          </div>
         </form>
       </ng-container>
 
