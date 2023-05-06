@@ -28,8 +28,8 @@ import { ChatlistComponent } from './chatlist/chatlist.component';
 import { DatePipe } from '@angular/common';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { QuestionForumComponent } from './question-forum/question-forum.component';
-import { AnswerService } from './service/answerService';
 import { ImageuploadComponent } from './imageupload/imageupload.component';
+import { MatFooterModule } from '@angular/material/footer';
 
 
 
@@ -61,7 +61,10 @@ import { ImageuploadComponent } from './imageupload/imageupload.component';
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    
+
+    
 
 
   ],
