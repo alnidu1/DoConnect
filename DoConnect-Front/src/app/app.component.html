@@ -1,4 +1,5 @@
 <mat-sidenav-container fullscreen>
+  <div style="width: 100%;">
   <mat-toolbar class="header" color="primary">
     <mat-toolbar-row>
       <span> DoConnect </span>
@@ -53,8 +54,18 @@
       </div>
     </mat-toolbar-row>
   </mat-toolbar>
-
+</div>
   <router-outlet></router-outlet>
 
+  <mat-toolbar color="primary" class="mat-elevation-z6" style="display: flex; flex-direction: column;">
+    <div style="font-size: 12px; margin-bottom: 2px;">
+      Group 1 Capstone: Andy Liu, Allen Andrew, Anudeep Gogineni
+    </div>
+    <div class="footer-container" style="align-items: center;">
+      <span class="footer-text" style="font-size: 10px;">© 2023 DoConnect. All rights reserved.</span>
+    </div>
+  </mat-toolbar>
+  
+  
  
 </mat-sidenav-container>
