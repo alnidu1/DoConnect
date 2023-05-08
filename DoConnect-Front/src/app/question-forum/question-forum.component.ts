@@ -17,7 +17,7 @@ import { User } from '../model/user';
 })
 export class QuestionForumComponent implements OnInit {
     public qId: any = 0
-    public answer: Answer = new Answer(0, "", "", "", "", 0, 0, 0);
+    public answer: Answer = new Answer(0, "", "", "", "", 0, new User(0,'','','','','',''), new User(0,'','','','','',''));
     public answers: Answer[] = []
     question:Question=new Question(0, "", "", "", "", "", "", new User(0,'','','','','',''), new User(0,'','','','','',''), this.answers)
     
@@ -26,7 +26,7 @@ export class QuestionForumComponent implements OnInit {
 
     constructor(private _Activatedroute: ActivatedRoute, private questionService: QuestionService, 
         @Inject(AnswerService) private answerService: AnswerService, private datePipe: DatePipe, 
-        private userAuthService:UserAuthService, private userService:UserService) {
+        private userAuthService:UserAuthService, private userService:UserService, private authService: UserAuthService) {
     }
     ngOnInit(): void {
         this._Activatedroute.paramMap.subscribe((paramMap) => {
@@ -52,12 +52,17 @@ export class QuestionForumComponent implements OnInit {
             this.answers = data
         })
     }
-
+    userid:string='';
     submitNewAnswer(newAnswerForm: NgForm) {
         newAnswerForm.value.datetime = this.datePipe.transform((new Date), 'MM/dd/yyyy h:mm:ss')
         newAnswerForm.value.status = "pending"
         newAnswerForm.value.question_id = this.qId
+        this.userid=this.authService.getUserId();
 
+        this.userService.getUserById( parseInt(this.userid)).subscribe((user:User)=>
+    {
+      this.answer.acreated_by= user
+    });
         this.answerService.addAnswer(newAnswerForm.value).subscribe(() => {
             this.loadAnswers()
         })

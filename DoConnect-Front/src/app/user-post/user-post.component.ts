@@ -66,7 +66,7 @@ export class UserPostComponent implements OnInit {
   selectedQuestion: Question=  new Question(0, "", "", "", "", "", "", new User(0,'','','','','',''), new User(0,'','','','','',''), [])
 
   answers: Answer[] = [];
-  answer: Answer = new Answer(0, '', '', '', '',0, 0, 0);
+  answer: Answer = new Answer(0, '', '', '', '',0, new User(0,'','','','','',''), new User(0,'','','','','',''));
 
   addNewAnswerFormVisible:boolean = false
 
@@ -87,7 +87,10 @@ export class UserPostComponent implements OnInit {
   userid='';
   createAnswer(q:Question, answerForm: NgForm) {
     this.userid=this.authservice.getUserId();
-    this.answer.qcreated_by = parseInt(this.userid);
+    this.userService.getUserById( parseInt(this.userid)).subscribe((user:User)=>
+    {
+      this.answer.acreated_by= user
+    });
     this.answer.question_id = q.id;
     this.answer.description_answer = answerForm.value.description_answer;
     this.answer.image_src= answerForm.value.image_src;
@@ -98,7 +101,7 @@ export class UserPostComponent implements OnInit {
       this.showAnswers(this.selectedQuestion);
     });
 
-    this.answer = new Answer(0, '', '', '', '', 0, 0, 0);
+    this.answer = new Answer(0, '', '', '', '', 0, new User(0,'','','','','',''), new User(0,'','','','','',''));
     this.addNewAnswerFormVisible = false;
     answerForm.resetForm();
 

@@ -22,8 +22,7 @@ export class AnswerService {
     constructor(private http:HttpClient, private userAuthService:UserAuthService, private userService:UserService) {}
 
     addAnswer(answer:Answer):Observable<any> {
-        answer.qcreated_by = parseInt(this.userAuthService.getUserId())
-        return this.http.post(`${this.addAnswerUrl}/${answer.question_id}`, answer)
+        return this.http.post(`${this.addAnswerUrl}/${answer.question_id}/${Number(this.userAuthService.getUserId())}`, answer)
     }
 
     deleteAnswer(answerId:number) {
