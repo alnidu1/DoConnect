@@ -5,7 +5,7 @@
 
 
 <div class="pending-questions-container">
-    <h2>List of Questions</h2>
+    <h2 style="  text-align: center;    ">List of Pending Questions</h2>
   
     <div class="question-card-container" *ngFor="let q of questions">
       <mat-card class="question-card">
@@ -19,10 +19,11 @@
           
         </mat-card-header>
   
-        <img mat-card-image [src]="q.image_src" alt="My Image">
   
         <mat-card-content>
           <p>{{q.description_question}}</p>
+          <img mat-card-image [src]="q.image_src" alt="My Image">
+
         </mat-card-content>
   
         <mat-card-actions>

@@ -1,0 +1,29 @@
+
+.btn-primary {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .btn-danger {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .btn-primary.active,
+.btn-danger.active {
+  background-color: #FFFFFF;
+  color: #000000;
+  border-color: #FFFFFF;
+}
+
+/* Optional: Customize the active button */
+.btn-primary.active {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.btn-danger.active {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+  
