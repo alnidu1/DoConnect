@@ -1,7 +1,6 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
-
-
+<div>
     <div class ="card panel teal" *ngFor="let chat of chats">
       <div class="card-content white-text">
         {{chat.fromuser}}:
@@ -9,8 +8,6 @@
       </div>
     </div>
     <input type="text" [(ngModel)]="newMessage">
-
     <button mat-raised-button (click)="sendChat(newMessage)" color="primary">Send</button>
-  </div>
 </div>
 
