@@ -1,14 +1,16 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
 
+<br>
+<h1 style="  text-align: center; ">Admin Page</h1>
 
-<h1>Admin Page</h1>
-
-
-<div>
-  <button (click)="toggleQuestions()">Questions</button>
-  <button (click)="toggleAnswers()">Answers</button>
+<div class="d-flex justify-content-center align-items-center mb-4" style="text-align: center;">
+  <button class="btn btn-primary me-3 active" data-target="questions" (click)="toggleQuestions()">Questions</button>
+  <button class="btn btn-danger" data-target="answers" (click)="toggleAnswers()">Answers</button>
 </div>
+
+
+
 
 <div *ngIf="showQuestions">
   <app-pending-question></app-pending-question>

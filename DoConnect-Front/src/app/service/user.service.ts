@@ -15,7 +15,9 @@ export class UserService{
     private signupUserUrl = "http://localhost:8080/adduser";
     private authenticateUrl = "http://localhost:8080/authenticate";
     private getAllUsersUrl = "http://localhost:8080/getallusers";
-    private getUserByIdUrl = "http://localhost:8080/getuserbyid"
+    private getUserByIdUrl = "http://localhost:8080/getuserbyid";
+    private getUserByUsernmaeUrl = "http://localhost:8080/getuserbyusername"
+
 
 
     constructor(private http:HttpClient,
@@ -50,6 +52,15 @@ export class UserService{
     getUserById(userId: number):Observable<User> {
         return this.http.get<User>(`${this.getUserByIdUrl}/${userId}`)
     }
+
+    getUserByUsername(username:string):Observable<User>{
+        return this.http.get<User>(`${this.getUserByUsernmaeUrl}/${username}`)
+
+    }
+    checkUsernameExists(username: string): Observable<boolean> {
+        return new Observable<true>;
+      }
+
 
 
 

@@ -14,8 +14,8 @@
               <div class="search-icon-container" >
                 <i class="fa fa-search"><mat-icon  style="padding-top: 4px;">search</mat-icon></i>
               </div>
-              <input type="text" placeholder="Search" class="search-input" style="font-size: x-large; line-height: .5;" >
-              <button class="search-button"><mat-icon>search</mat-icon></button>
+              <input type="text" name="searchTerm" placeholder="Search" class="search-input" style="font-size: x-large; line-height: .5;"  [(ngModel)]="searchTerm">
+              <button class="search-button" type="submit"><mat-icon>search</mat-icon></button>
             </div>
           </div>
         </form>
@@ -57,14 +57,8 @@
 </div>
   <router-outlet></router-outlet>
 
-  <mat-toolbar color="primary" class="mat-elevation-z6" style="display: flex; flex-direction: column;">
-    <div style="font-size: 12px; margin-bottom: 2px;">
-      Group 1 Capstone: Andy Liu, Allen Andrew, Anudeep Gogineni
-    </div>
-    <div class="footer-container" style="align-items: center;">
-      <span class="footer-text" style="font-size: 10px;">© 2023 DoConnect. All rights reserved.</span>
-    </div>
-  </mat-toolbar>
+  
+
   
   
  
