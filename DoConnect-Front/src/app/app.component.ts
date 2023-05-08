@@ -41,13 +41,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-
-
-   
     this.username = this.userAuthService.getUserName();
-
-  
-  
   }
   ngAfterViewInit() {
    
@@ -111,6 +105,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       }
     );
   }
+
   isUserPostPath(): boolean {
     return this.router.url.startsWith('/userpost');
   }
