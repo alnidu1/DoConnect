@@ -17,6 +17,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import cogent.infotech.com.service.AnswerService;
 import cogent.infotech.com.service.QuestionService;
+import cogent.infotech.com.service.UserService;
 import cogent.infotech.com.entity.Answer;
 import cogent.infotech.com.entity.Question;
 import cogent.infotech.com.entity.User;
@@ -29,14 +30,17 @@ public class AnswerController {
 	private AnswerService answerService;
 	@Autowired
 	private QuestionService qs;
+	@Autowired
+	private UserService us;
 	
 	
 	
-	@PostMapping("/addanswer/{question_id}")
+	@PostMapping("/addanswer/{question_id}/{user_id}")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public void addAnswer(@Validated @PathVariable("question_id") int question_id, @Validated @RequestBody Answer answer) {
+	public void addAnswer(@Validated @PathVariable("question_id") int question_id, @Validated @PathVariable("user_id") int user_id, @Validated @RequestBody Answer answer) {
 		Question q= qs.getQuestionById(question_id);
 		answer.setQuestion(q);
+		answer.setAcreated_by(us.getUserById(user_id));
 		List<Answer> answers = q.getAnswers();
 		answers.add(answer);
 		q.setAnswers(answers);
