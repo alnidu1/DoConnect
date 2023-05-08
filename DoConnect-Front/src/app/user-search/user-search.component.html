@@ -27,7 +27,10 @@
         </mat-card-header>
         <mat-card-content>
           <p>{{q.description_question}}</p>
-          <img [src]="q.image_src" alt="My Image">
+          <div *ngIf="q.image_src!=null && q.image_src!='' ">
+            <img [src]="q.image_src" alt="My Image">
+
+          </div>
         </mat-card-content>
         <mat-card-footer>
           <div>
@@ -43,10 +46,7 @@
     </div>
   </div>
 </div>
-<<<<<<< HEAD
 <div *ngIf="(!questions ) || count==0">
-=======
-<div *ngIf="(questions && questions.length === 0)">
->>>>>>> a4a5fb2bbd1827690a7fe89a69e1a250ab4d7f54
+
   No results found.
 </div>

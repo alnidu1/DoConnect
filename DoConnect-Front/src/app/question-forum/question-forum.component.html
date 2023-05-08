@@ -1,13 +1,14 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
 
-{{question.topic}}
 <H1 style="text-align: center;" >{{question.title}}</H1>
-<H2>{{question.description_question}}</H2>
-{{question.datetime}}
+<H3 style="text-align: center;">{{question.description_question}}</H3>
+<h4 style="text-align:center;" > {{question.datetime}}</h4>
 <br>
-<img src="{{question.image_src}}" alt="My Image">
+<div *ngIf="question.image_src!=null && question.image_src!=''">
+    <img src="{{question.image_src}}" alt="My Image">
 
+</div>
 <div class="answer-list-container">
     <table class="table table-striped">
         <thead>

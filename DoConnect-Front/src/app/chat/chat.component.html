@@ -1,16 +1,9 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
-
-
-    <div class ="card panel teal" *ngFor="let chat of chats">
-      <div class="card-content white-text">
-        {{chat.fromuser}}:
-        <p>{{ chat.message }}</p>
-      </div>
-    </div>
+<div>
+    <ul>
+      <li *ngFor="let chat of chats"><strong>{{chat.fromuser}}:</strong> {{ chat.message }}</li>
+    </ul>
     <input type="text" [(ngModel)]="newMessage">
-
     <button mat-raised-button (click)="sendChat(newMessage)" color="primary">Send</button>
-  </div>
 </div>
-

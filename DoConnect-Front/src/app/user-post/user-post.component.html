@@ -57,7 +57,10 @@
             </mat-card-header>
             <mat-card-content>
               <p>{{q.description_question}}</p>
-              <img [src]="q.image_src" alt="My Image">
+              <div *ngIf="q.image_src!=null && q.image_src!=''">
+                <img [src]="q.image_src" alt="My Image">
+
+              </div>
             </mat-card-content>
             <mat-card-footer>
               <div>

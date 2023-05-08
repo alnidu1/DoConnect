@@ -10,7 +10,7 @@
         <tr *ngFor="let u of users">
             <td *ngIf="u.username != this.fromuser">{{u.id}}</td>
             <td *ngIf="u.username != this.fromuser">{{u.username}}</td>
-            <button *ngIf="u.username != this.fromuser" mat-raised-button (click)="openChat(u.name)" color="primary">Chat Now</button>
+            <button *ngIf="u.username != this.fromuser" mat-raised-button (click)="openChat(u.username)" color="primary">Chat Now</button>
         </tr>
     </tbody>
 </table>
