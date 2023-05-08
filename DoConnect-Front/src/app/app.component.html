@@ -27,7 +27,7 @@
 
 
       <div class="nav-buttons">
-        <button  mat-raised-button class="nav-button">
+        <button  mat-raised-button class="nav-button" *ngIf="username">
           <mat-icon aria-hidden="false" aria-label="profile icon" style="font-size: 18px;">account_circle</mat-icon>
           <span class="button-text">{{ username }}</span>
         </button>
