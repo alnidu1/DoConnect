@@ -1,66 +1,23 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
 
+<br>
+<h1 style="  text-align: center; ">Admin Page</h1>
 
-<H1>Admin Page</H1>
-<div class="pending-questions-container">
-    <h2>List of Questions</h2>
-    <table class="table table-striped">
-        <thead>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Topic</th>
-            <th>Description</th>
-            <th>Image</th>
-            <th>Datetime</th>
-            <th>Status</th>
-        </thead>
-        <tbody>
-            <tr *ngFor="let q of questions">
-
-                <td>{{q.id}}</td>
-                <td>{{q.title}}</td>
-                <td>{{q.topic}}</td>
-                <td>{{q.description_question}}</td>
-                <td><img [src]="q.image_src" alt="My Image"></td>
-                <td>{{q.datetime}}</td>
-                <td>{{q.status}}</td>
-                <td>
-                    <button mat-raised-button (click)="approveQuestion(q)"	color="primary">Approve</button>
-
-                    <button mat-raised-button	(click)="denyQuestion(q)"color="warn">Deny</button></td>
-            </tr>
-
-        </tbody>
-    </table>
+<div class="d-flex justify-content-center align-items-center mb-4" style="text-align: center;">
+  <button class="btn btn-primary me-3 active" data-target="questions" (click)="toggleQuestions()">Questions</button>
+  <button class="btn btn-danger" data-target="answers" (click)="toggleAnswers()">Answers</button>
 </div>
 
-<br>
 
-<div class="pending-answers-container">
-    <h2>List of Answers</h2>
-    <table class="table table-striped">
-        <thead>
-            <th>ID</th>
-            <th>Description</th>
-            <th>Image</th>
-            <th>Datetime</th>
-            <th>Status</th>
-        </thead>
-        <tbody>
-            <tr *ngFor="let a of answers">
 
-                <td>{{a.id}}</td>
-                <td>{{a.description_answer}}</td>
-                <td><img [src]="a.image_src" alt="My Image"></td>
-                <td>{{a.datetime}}</td>
-                <td>{{a.status}}</td>
-                <td>
-                    <button mat-raised-button (click)="approveAnswer(a)" color="primary">Approve</button>
 
-                    <button mat-raised-button (click)="denyAnswer(a)" color="warn">Deny</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<div *ngIf="showQuestions">
+  <app-pending-question></app-pending-question>
+  <br><br>
+</div>
+
+<div *ngIf="showAnswers">
+  <app-pending-answer></app-pending-answer>
+  <br><br>
 </div>

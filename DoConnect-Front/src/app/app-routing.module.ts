@@ -10,6 +10,8 @@ import { UserSearchComponent } from './user-search/user-search.component';
 import { QuestionForumComponent } from './question-forum/question-forum.component';
 import { ChatlistComponent } from './chatlist/chatlist.component';
 import { ImageuploadComponent } from './imageupload/imageupload.component';
+import { PendingAnswerComponent } from './pending-answer/pending-answer.component';
+import { PendingQuestionComponent } from './pending-question/pending-question.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -23,7 +25,9 @@ const routes: Routes = [
   {path:"questionforum/:qId", component:QuestionForumComponent},
   {path:"usersearch", component:UserSearchComponent},
   {path: "chatlist", component: ChatlistComponent},
-  {path: "image", component: ImageuploadComponent}
+  {path: "image", component: ImageuploadComponent},
+  {path:"pendingquestion", component:PendingQuestionComponent},
+  {path:"pendinganswer", component:PendingAnswerComponent}
 
 
 ];

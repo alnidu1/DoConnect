@@ -1,0 +1,34 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+
+<div class="pending-answers-container">
+    <h2>List of Answers</h2>
+  
+    <div class="answer-card" *ngFor="let a of answers">
+      <mat-card>
+       <mat-card-header>
+      </mat-card-header>
+
+        <mat-card-content>
+          <p>{{a.description_answer}}</p>
+        </mat-card-content>
+        
+        <img mat-card-image [src]="a.img_src" alt="My Image">
+  
+        <mat-card-actions>
+          <button mat-raised-button (click)="approveAnswer(a)" color="primary">Approve</button>
+          <button mat-raised-button (click)="denyAnswer(a)" color="warn">Deny</button>
+        </mat-card-actions>
+  
+        <mat-card-footer>
+          <span>{{a.datetime}}</span>
+          <span>{{a.status}}</span>
+        </mat-card-footer>
+  
+      </mat-card>
+      <br>
+    </div>
+  
+  </div>
+  
+  

@@ -12,14 +12,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserSearchComponent implements OnInit {
   questions: Question[]=[];
+  count:number=0;
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.questions = history.state.questions;
-  }
+  }  
 
-  
+  isApproved(q: Question): boolean {
+    return q.status == "approved"
+  }
 }
   
 

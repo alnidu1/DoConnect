@@ -31,7 +31,8 @@ public class QuestionServiceImpl implements QuestionService{
 	
 	@Override
 	public void addQuestion(Question question) {
-        emailService.sendEmail("cogentcapstonetesting@gmail.com", "new question waiting to be approve", question.getTitle() + " "+ question.getDescription_question());
+		
+        //emailService.sendEmail("cogentcapstonetesting@gmail.com", "new question waiting to be approve", question.getTitle() + " "+ question.getDescription_question());
 		questionRepository.save(question);
 	}
 

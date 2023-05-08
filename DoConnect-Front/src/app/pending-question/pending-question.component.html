@@ -1,0 +1,43 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+
+
+
+
+<div class="pending-questions-container">
+    <h2 style="  text-align: center;    ">List of Pending Questions</h2>
+  
+    <div class="question-card-container" *ngFor="let q of questions">
+      <mat-card class="question-card">
+  
+        <mat-card-header>
+          <div mat-card-avatar class="question-topic-icon">
+            <mat-icon>{{q.topic}}</mat-icon>
+          </div>
+          <mat-card-title>{{q.title}}</mat-card-title>
+          <mat-card-subtitle>{{q.qcreated_by.username}} </mat-card-subtitle>
+          
+        </mat-card-header>
+  
+  
+        <mat-card-content>
+          <p>{{q.description_question}}</p>
+          <img mat-card-image [src]="q.image_src" alt="My Image">
+
+        </mat-card-content>
+  
+        <mat-card-actions>
+          <button mat-raised-button (click)="approveQuestion(q)" color="primary">Approve</button>
+          <button mat-raised-button (click)="denyQuestion(q)" color="warn">Deny</button>
+        </mat-card-actions>
+  
+        <mat-card-footer>
+          <span>{{q.datetime}}</span>
+          <span>{{q.status}}</span>
+        </mat-card-footer>
+  
+      </mat-card>
+    </div>
+  
+  </div>
+  
