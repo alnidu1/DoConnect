@@ -82,7 +82,7 @@ export class UserPostComponent implements OnInit {
   userid='';
   createAnswer(q:Question, answerForm: NgForm) {
     this.userid=this.authservice.getUserId();
-    this.answer.acreated_by = parseInt(this.userid);
+    this.answer.qcreated_by = parseInt(this.userid);
     this.answer.question_id = q.id;
     this.answer.description_answer = answerForm.value.description_answer;
     this.answer.datetime = this.datePipe.transform(new Date(), 'MM/dd/yyyy h:mm:ss');
