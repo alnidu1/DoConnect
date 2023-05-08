@@ -43,7 +43,7 @@ public class AnswerServiceImpl implements AnswerService{
 	
 	@Override
 	public void addAnswer(Answer answer) {
-        //emailService.sendEmail("cogentcapstonetesting@gmail.com", "new answer waiting to be approve", "answer body");
+        emailService.sendEmail("cogentcapstonetesting@gmail.com", "new answer waiting to be approve", "answer body");
 
 		answerRepository.save(answer);
 	}

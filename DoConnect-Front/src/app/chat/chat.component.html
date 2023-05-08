@@ -1,10 +1,15 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
-<div>
-    <ul>
-      <li *ngFor="let chat of chats"><strong>{{chat.fromuser}}:</strong> {{ chat.message }}</li>
-    </ul>
-    <input type="text" [(ngModel)]="newMessage">
+<div class="chat-container">
+  <div *ngFor="let chat of chats" class="message-container">
+    <div class="message" [ngClass]="{'message-sent': chat.fromuser === fromuser, 'message-received': chat.fromuser !== fromuser && chat.fromuser !== null}">
+      <div class="message-content">{{ chat.message }}</div>
+      <div class="message-time">{{ chat.datetime }}</div>
+    </div>
+  </div>
+  <div class="message-input-container">
+    <input type="text" [(ngModel)]="newMessage" class="message-input">
     <button mat-raised-button (click)="sendChat(newMessage)" color="primary">Send</button>
+  </div>
 </div>
 
