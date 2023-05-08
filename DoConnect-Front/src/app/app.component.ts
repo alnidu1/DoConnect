@@ -8,6 +8,7 @@ import { Question } from './model/question';
 import { QuestionService } from './service/questionService';
 
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -41,6 +42,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
 
+
    
     this.username = this.userAuthService.getUserName();
 
@@ -70,7 +72,14 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   onChat() {
-    this.router.navigate(['/chatlist']);
+    if(this.username==(''|| null|| undefined)){
+      this.router.navigate(['/home']);
+
+    }
+    else{
+      this.router.navigate(['/chatlist']);
+
+    }
   }
 
   homeButton(){

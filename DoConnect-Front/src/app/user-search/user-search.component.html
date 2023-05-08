@@ -1,12 +1,37 @@
 <h2>Search Results</h2>
-<div *ngIf="questions && questions.length > 0">
-  <ul>
-    <li *ngFor="let question of questions">
-      <a [routerLink]="['/userpost', question.id]">{{ question.title }}</a>
-      <div>{{question.description_question}}</div>
-    </li>
-  </ul>
+<div *ngIf="questions && questions.length ">
+  <div class="question-card-container">
+    <div class="question-card" *ngFor="let q of questions">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            <div class="question-topic-icon"></div>
+
+            <a [routerLink]="['/questionforum', q.id]" href="/questionforum">{{q.title}}</a>
+          </mat-card-title>
+          <mat-card-subtitle>
+            {{q.topic}}
+          </mat-card-subtitle>
+          <div ></div>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{q.description_question}}</p>
+          <img [src]="q.image_src" alt="My Image">
+        </mat-card-content>
+        <mat-card-footer>
+          <div>
+            <span>{{q.datetime}}</span>
+            <span>{{q.status}}</span>
+          </div>
+          <div>
+          
+           
+          </div>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+  </div>
 </div>
-<div *ngIf="questions && questions.length === 0">
+<div *ngIf="(questions && questions.length === 0) || count==0">
   No results found.
 </div>

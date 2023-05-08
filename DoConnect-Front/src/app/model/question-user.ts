@@ -1,8 +1,7 @@
-import { NumberSymbol } from '@angular/common';
-import {User} from './user'
-import { Answer } from './answer';
+import { Answer } from "./answer";
+import { User } from "./user";
 
-export class Question {
+export class QuestionUser {
     constructor(
         public id: number,
         public description_question: String,
@@ -11,9 +10,8 @@ export class Question {
         public status: String,
         public topic: String,
         public title: String,
-        public qcreated_by: User,
-        public qapproved_by: User,
-        
+        public qapproved_by:User,
+        public qcreated_id: User,
         public answers: Answer[]
 
     ){}

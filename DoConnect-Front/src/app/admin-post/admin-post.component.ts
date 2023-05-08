@@ -1,59 +1,28 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { Question } from '../model/question';
-import { QuestionService } from '../service/questionService';
-import { Router } from '@angular/router';
-import { Location } from '@angular/common';
+import { Component } from '@angular/core';
+
 
 @Component({
   selector: 'app-admin-post',
   templateUrl: './admin-post.component.html',
   styleUrls: ['./admin-post.component.css']
 })
-export class AdminPostComponent implements OnInit, AfterViewInit{
+export class AdminPostComponent {
 
-  questions:Question[]=[]
-  question:Question=new Question(0, "", "", "", "", "", "", 0, 0, [])
-  
+  showQuestions: boolean = true; // set initial value to true
+  showAnswers: boolean = false;
+
+
   ngOnInit(): void {
-    
-    /*this.questionService.getAllQuestions().subscribe((data: Question[])=>{
-      this.questions=data
-    });*/
-    this.loadPosts();
-
-  }
-  ngAfterViewInit() {
-    
-
+    // fetch data if needed
   }
 
-
-  constructor(private questionService:QuestionService, router:Router, location:Location) {}
-
-  loadPosts() {
-    this.questionService.getPendingQuestions().subscribe((data: Question[])=>{
-      this.questions=data
-    });
+  toggleQuestions() {
+    this.showQuestions = true;
+    this.showAnswers = false;
   }
 
-  approvePost(quest:Question){
-    this.questionService.approveQuestion(quest).subscribe(()=>
-      {
-      this.loadPosts();
-     });
+  toggleAnswers() {
+    this.showAnswers = true;
+    this.showQuestions = false;
   }
-
-  denyPost(quest:Question){
-    this.questionService.denyQuestion(quest).subscribe(()=>
-    {
-      this.loadPosts();
-    }
-    );
-  }
-
-  refresh(){
-    location.reload;
-  }
-
-
 }

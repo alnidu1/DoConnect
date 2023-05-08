@@ -119,11 +119,6 @@ public class ChatServiceImpl implements CustomerService {
 	public List<Answer> getAllAnswersByQuestionId(int questionId) {
 		return answerRepository.getAllByQuestionId(questionId);
 	}
-
-	@Override
-	public void addNewUser(User user) {
-		userRepository.save(user);
-	}
 	
 	@Override
 	public void updateUser(User user) {
@@ -161,4 +156,8 @@ public class ChatServiceImpl implements CustomerService {
 		return (List)chatRepository.findAllBetweenTwoUsers(fromuser, touser);
 	}
 
+	@Override
+	public void addNewUser(User user) {
+
+	}
 }

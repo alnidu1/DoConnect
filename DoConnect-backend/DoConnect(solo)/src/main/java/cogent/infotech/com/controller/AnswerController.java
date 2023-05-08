@@ -17,6 +17,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import cogent.infotech.com.service.AnswerService;
 import cogent.infotech.com.service.QuestionService;
+import cogent.infotech.com.service.UserService;
 import cogent.infotech.com.entity.Answer;
 import cogent.infotech.com.entity.Question;
 import cogent.infotech.com.entity.User;
@@ -29,18 +30,23 @@ public class AnswerController {
 	private AnswerService answerService;
 	@Autowired
 	private QuestionService qs;
+	@Autowired
+	private UserService us;
 	
 	
 	
-	@PostMapping("/addanswer/{id}")
+	@PostMapping("/addanswer/{question_id}/{user_id}")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public void addAnswer(@Validated @RequestBody Answer answer, @Validated @PathVariable("id") int id ) {
-		Question q= qs.getQuestionById(id);
+	public void addAnswer(@Validated @PathVariable("question_id") int question_id, @Validated @PathVariable("user_id") int user_id, @Validated @RequestBody Answer answer) {
+		Question q= qs.getQuestionById(question_id);
 		answer.setQuestion(q);
-		answerService.addAnswer(answer,id);
+		answer.setAcreated_by(us.getUserById(user_id));
+		List<Answer> answers = q.getAnswers();
+		answers.add(answer);
+		q.setAnswers(answers);
+		qs.updateAnswers(q);
+//		answerService.addAnswer(answer);
 	}
-	
-
 	
 	
 	
@@ -49,26 +55,47 @@ public class AnswerController {
 	public void deleteAnswerById(@Validated @PathVariable("id") int id) {
 		answerService.deleteAnswerById(id);
 	}
-	
-	@GetMapping("/getallanswers/{id}")
+
+	@GetMapping("/getapprovedanswers/{question_id}")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public List<Answer> getAllAnswers(@Validated @PathVariable("id") int id) {
-		
-		return answerService.getAllAnswers(id);
-	}
+	public List<Answer> getApprovedAnswers(@Validated @PathVariable("question_id") int question_id) { return answerService.getAllApprovedAnswers(question_id); }
+
+	@GetMapping("/getpendinganswers")
+	@PreAuthorize("hasRole('admin')")
+	public List<Answer> getPendingAnswers() { return answerService.getAllPendingAnswers(); }
+	
+//	@GetMapping("/getallanswers/{id}")
+//	@PreAuthorize("hasRole('user') || hasRole('admin')")
+//	public List<Answer> getAllAnswers(@Validated @PathVariable("id") int id) {
+//
+//		return answerService.getAllAnswers(id);
+//	}
 	
 
 	
-	@GetMapping("/getallanswerbyquestionid")
+	@GetMapping("/getallanswersbyquestionid/{questionId}")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public List<Answer> getAllAnswersByQuestionId(@Validated @RequestBody int questionid) {
-		return answerService.getAllAnswersByQuestionId(questionid);
+	public List<Answer> getAllAnswersByQuestionId(@Validated @PathVariable("questionId") int questionId) {
+		return answerService.getAllAnswersByQuestionId(questionId);
+	}
+
+	@PutMapping("/approveanswer/{adminId}")
+	@PreAuthorize("hasRole('admin')")
+	public void approveAnswer(@Validated @PathVariable("adminId") int adminId,
+							  @Validated @RequestBody Answer answer) {
+		answerService.approveAnswer(adminId, answer);
+	}
+
+	@PutMapping("/denyanswer")
+	@PreAuthorize("hasRole('admin')")
+	public void denyAnswer(@Validated @RequestBody Answer answer) {
+		answerService.denyAnswer(answer);
 	}
 	
-	@GetMapping("/getallanswerbyid")
+	@GetMapping("/getanswerbyid/{id}")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public List<Answer> getAllAnswersById(@Validated @RequestBody int id) {
-		return answerService.getAllAnswersById(id);
+	public Answer getAllAnswersById(@Validated @PathVariable int id) {
+		return answerService.getAnswerById(id);
 	}
 
 	

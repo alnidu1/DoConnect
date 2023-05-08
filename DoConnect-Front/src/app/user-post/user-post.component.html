@@ -27,7 +27,7 @@
 
         <div class="form-group">
             <label for="image_src">Image:</label>
-            <input class="form-control" name="image" id="image" type="text" placeholder="Image Source Text"
+            <input class="form-control" name="image_src" id="image_src" type="url" placeholder="Image Source Text"
                 [(ngModel)]="question.image_src" required>
         </div>
 
@@ -36,58 +36,42 @@
 </div>
 
 <br>
+
 <div class="question-list-container">
     <h1>List of Questions</h1>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Topic</th>
-                <th>Description</th>
-                <th>Image</th>
-                <th>Datetime</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let q of questions">
-                <td>{{q.id}}</td>
-                <td>{{q.title}}</td>
-                <td>{{q.topic}}</td>
-                <td>{{q.description_question}}</td>
-                <td><img [src]="q.image_src" alt="My Image"></td>
-                <td>{{q.datetime}}</td>
-                <td>{{q.status}}</td>
-                <td>
-
-                    <button mat-raised-button (click)="addNewAnswer()">Add Answer</button>
-                    <form *ngIf="addNewAnswerFormVisible" novalidate #newAnswerForm="ngForm"
-                        (ngSubmit)="createAnswer(q, newAnswerForm)" class="needs-validation">
-                        <div class="form-group">
-                            <label for="description_answer">Answer:</label>
-                            <input class="form-control" name="description_answer" id="description_answer" type="text"
-                                placeholder="Answer" [(ngModel)]="newAnswerForm.value.description_answer" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="image_src">Image:</label>
-                            <input class="form-control" name="image_src" id="image_src" type="text" placeholder="Image"
-                                [(ngModel)]="newAnswerForm.value.image_src" required>
-                        </div>
-                       
-                        <button mat-raised-button type="submit" color="primary">Submit Answer</button>
-                    </form>
-                    <button mat-raised-button  (click)="showAnswers(q)">View Answers</button>
-                    <form *ngIf="showAnswer" >
-                        <ul *ngFor="let a of answers">
-                            <li> {{a.id}} </li>
-                            <li> {{a.description_answer}}</li>
-                            
-                         </ul>
-                    </form>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+    <div *ngIf="questions && questions.length ">
+      <div class="question-card-container">
+        <div class="question-card" *ngFor="let q of questions">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>
+                <div class="question-topic-icon"></div>
+    
+                <a [routerLink]="['/questionforum', q.id]" href="/questionforum">{{q.title}}</a>
+              </mat-card-title>
+              <mat-card-subtitle>
+                {{q.qcreated_by.username}}<br>
+                {{q.topic}}
+              </mat-card-subtitle>
+              <div ></div>
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{q.description_question}}</p>
+              <img [src]="q.image_src" alt="My Image">
+            </mat-card-content>
+            <mat-card-footer>
+              <div>
+                <span>{{q.datetime}}</span>
+                <span>{{q.status}}</span>
+              </div>
+             
+            <div>
+       
+             
+            </div>
+          </mat-card-footer>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  

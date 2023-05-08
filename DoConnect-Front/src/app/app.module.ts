@@ -27,7 +27,11 @@ import { UserSearchComponent } from './user-search/user-search.component';
 import { ChatlistComponent } from './chatlist/chatlist.component';
 import { DatePipe } from '@angular/common';
 import { SearchbarComponent } from './searchbar/searchbar.component';
+import { QuestionForumComponent } from './question-forum/question-forum.component';
 import { ImageuploadComponent } from './imageupload/imageupload.component';
+import { MatCardModule } from '@angular/material/card';
+import { PendingQuestionComponent } from './pending-question/pending-question.component';
+import { PendingAnswerComponent } from './pending-answer/pending-answer.component';
 
 
 
@@ -43,7 +47,12 @@ import { ImageuploadComponent } from './imageupload/imageupload.component';
     UserSearchComponent,
     ChatlistComponent,
     SearchbarComponent,
-    ImageuploadComponent
+    ImageuploadComponent,
+    SearchbarComponent,
+    QuestionForumComponent,
+    PendingQuestionComponent,
+    PendingAnswerComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -57,7 +66,11 @@ import { ImageuploadComponent } from './imageupload/imageupload.component';
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule
+    
+
+    
 
 
   ],
