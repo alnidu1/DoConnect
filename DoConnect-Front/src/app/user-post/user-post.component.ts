@@ -93,7 +93,7 @@ export class UserPostComponent implements OnInit {
     });
     this.answer.question_id = q.id;
     this.answer.description_answer = answerForm.value.description_answer;
-    this.answer.image_src= answerForm.value.image_src;
+    this.answer.img_src= answerForm.value.image_src;
     this.answer.datetime = this.datePipe.transform(new Date(), 'MM/dd/yyyy h:mm:ss');
     this.answer.status = 'pending';
 

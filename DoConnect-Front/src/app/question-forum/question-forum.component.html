@@ -1,8 +1,12 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
 
-Hello
-<H1>{{question.title}}</H1>
+{{question.topic}}
+<H1 style="text-align: center;" >{{question.title}}</H1>
+<H2>{{question.description_question}}</H2>
+{{question.datetime}}
+<br>
+<img src="{{question.image_src}}" alt="My Image">
 
 <div class="answer-list-container">
     <table class="table table-striped">
@@ -16,9 +20,8 @@ Hello
         <tbody>
             <tr *ngFor="let a of answers">
                 <td>{{a.id}}</td>
-                <!-- <td><a [routerLink]="['/questionforum', q.id]" href="/questionforum" (onclick)="loadQuestion(q)">{{q.title}}</a></td> -->
                 <td>{{a.description_answer}}</td>
-                <td><img [src]="a.image_src" alt="My Image">
+                <td><img [src]="a.img_src" alt="My Image">
                 </td>
                 <td>{{a.datetime}}</td>
                 <td>{{a.status}}</td>
@@ -33,13 +36,14 @@ Hello
     <button mat-raised-button (click)="addNewAnswer()" color="primary">Add New Answer</button>
     <form *ngIf="addNewAnswerFormVisible" novalidate #newAnswerForm="ngForm" (ngSubmit)="submitNewAnswer(newAnswerForm)" class="needs-validation">
         <div class="form-group">
-        <label for="description_answer">Answer:</label>
-        <input class="form-control" name="description_answer" id="description_answer" type="text" placeholder="Description" [(ngModel)]="answer.description_answer" required>
+            <label for="description_answer">Answer:</label>
+            <input class="form-control" name="description_answer" id="description_answer" type="text" placeholder="Description" [(ngModel)]="answer.description_answer" required>
         </div>
 
         <div class="form-group">
-        <label for="image_src">Image:</label>
-        <input class="form-control" name="image_src" id="image_src" type="url" placeholder="Image Source Text" [(ngModel)]="answer.image_src" required>
+
+            <label for="image_src">Image:</label>
+            <input class="form-control" name="img_src" id="img_src" type="url" placeholder="Image Source Text" [(ngModel)]="answer.img_src" required>
         </div>
 
         <button mat-raised-button type="submit" color="primary">Submit Answer</button>
